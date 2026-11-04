@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Manual de Inducción y Práctica Diaria – Médico Examinador CEL Avellaneda (PBA)</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- BACKDROP PARA MENÚ MÓVIL -->
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+  <!-- BARRA LATERAL DE NAVEGACIÓN (ESCRITORIO + GAVETA MÓVIL) -->
+  <aside class="sidebar" id="ebook-sidebar">
+    <div class="sidebar-brand">
+      <div>
+        <span class="sidebar-badge">Ebook de Onboarding Médico</span>
+        <h1>Médico Examinador CEL Avellaneda</h1>
+        <p>Sistema Nacional de Licencias de Conducir (Si.Na.Li.C.) · Provincia de Buenos Aires</p>
+      </div>
+      <button type="button" class="sidebar-close-btn" id="btn-close-drawer" aria-label="Cerrar menú">✕</button>
+    </div>
+
+    <div class="progress-box">
+      <div class="progress-header">
+        <span>Progreso del Plan de Estudio</span>
+        <span id="study-progress-text">0/7 módulos (0%)</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="study-progress-fill"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="nav-section-title">Índice de Capítulos</div>
+      <ul class="nav-list">
+        <li><a href="#cap-bienvenida" class="active"><span class="nav-num">0</span> Bienvenida e Introducción</a></li>
+        <li><a href="#cap-estudio"><span class="nav-num">1</span> Plan de Estudio en 7 Días (con Links)</a></li>
+        <li><a href="#cap-flujo"><span class="nav-num">2</span> Flujo Diario del Consultorio (5 Min)</a></li>
+        <li><a href="#cap-baremos"><span class="nav-num">3</span> Baremos ANSV y Subclases (A–G)</a></li>
+        <li><a href="#cap-calculadoras"><span class="nav-num">4</span> Calculadoras y Escalas Clínicas</a></li>
+        <li><a href="#cap-casos"><span class="nav-num">5</span> Los 8 Casos Clínicos Críticos</a></li>
+        <li><a href="#cap-plantillas"><span class="nav-num">6</span> Plantillas y Auditoría de Certificados</a></li>
+        <li><a href="#cap-blindaje"><span class="nav-num">7</span> Blindaje Médico-Legal y Ética</a></li>
+        <li><a href="#cap-biblioteca"><span class="nav-num">8</span> Biblioteca Normativa Completa</a></li>
+        <li><a href="#cap-vademecum"><span class="nav-num">9</span> Vademécum de Bolsillo (1 Página)</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-actions">
+      <button type="button" class="btn-print" id="btn-print-ebook">
+        🖨️ Imprimir / Guardar en PDF (A4)
+      </button>
+      <button type="button" class="btn-reset" id="btn-reset-progress">
+        Reiniciar progreso de lectura
+      </button>
+    </div>
+  </aside>
+
+  <!-- BARRA INFERIOR FLOTANTE PARA CELULAR (ESTILO APP NATIVA) -->
+  <nav class="mobile-bottom-bar" aria-label="Navegación rápida móvil">
+    <button type="button" class="mobile-nav-btn primary" id="btn-open-drawer">
+      <span>☰</span>
+      <span>Capítulos</span>
+    </button>
+    <a href="#cap-baremos" class="mobile-nav-btn">
+      <span>📊</span>
+      <span>Baremos</span>
+    </a>
+    <a href="#cap-calculadoras" class="mobile-nav-btn">
+      <span>🧮</span>
+      <span>Escalas</span>
+    </a>
+    <a href="#cap-plantillas" class="mobile-nav-btn">
+      <span>📋</span>
+      <span>Plantillas</span>
+    </a>
+    <button type="button" class="mobile-nav-btn" id="btn-mobile-search">
+      <span>🔍</span>
+      <span>Buscar</span>
+    </button>
+  </nav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="search-container">
+        <span class="search-icon">🔍</span>
+        <input
+          type="search"
+          id="ebook-search"
+          class="search-input"
+          placeholder="Buscar patología, subclase, artículo, baremo o plantilla (ej.: monocular, D1, epilepsia, insulina, art 293)..."
+        />
+      </div>
+      <div class="topbar-meta">
+        <span id="search-results-count">10 secciones disponibles</span>
+        <span>·</span>
+        <strong>Distrito II (Avellaneda) · Región Sanitaria VI</strong>
+      </div>
+    </header>
+
+    <main class="ebook-container">
+
+      <!-- PORTADA EDITORIAL -->
+      <section class="cover-card">
+        <span class="cover-kicker">Guía Oficial de Inducción · Medicina Vial y Pericial</span>
+        <h1>Manual de Inducción, Práctica Diaria y Resguardo Médico-Legal para el Médico Examinador</h1>
+        <p class="cover-subtitle">
+          Compendio operativo, clínico y normativo para el ejercicio de la evaluación psicofísica en Centros Emisores de Licencias de Conducir (CEL Avellaneda – Provincia de Buenos Aires), conectado a toda la biblioteca oficial de InfoLeg, ANSV y Normas GBA (accesible desde celular y PC).
+        </p>
+        <div class="cover-meta-grid">
+          <div class="cover-meta-item">
+            <span>Marco Nacional y ANSV</span>
+            <strong>Ley 24.449 · Dto. 779/95 y 196/25 · Disp. ANSV 207/09, 219/25 y 300/25</strong>
+          </div>
+          <div class="cover-meta-item">
+            <span>Marco Provincia de Buenos Aires</span>
+            <strong>Ley 13.927 · Ley 15.402 (Alcohol Cero) · Dto. 532/09 (Anexo II)</strong>
+          </div>
+          <div class="cover-meta-item">
+            <span>Resguardo Pericial y Ético</span>
+            <strong>Ley 17.132 · Ley 26.529 · Ley 25.326 · Dto.-Ley 5.413/58 · Cód. Penal Art. 293/295</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAPÍTULO 0: BIENVENIDA E INTRODUCCIÓN -->
+      <article class="chapter-card" id="cap-bienvenida">
+        <div class="chapter-header">
+          <span class="chapter-eyebrow">Capítulo 0 · Introducción al Servicio</span>
+          <h2>Carta de Bienvenida al Nuevo Médico Examinador</h2>
+          <p>El rol médico-pericial en el Centro Emisor de Licencias de Conducir (CEL) de Avellaneda.</p>
+        </div>
+
+        <p>
+          Bienvenido/a al equipo médico del <strong>Centro Emisor de Licencias de Conducir (CEL)</strong>. El propósito de este Ebook es ahorrarte semanas de búsqueda dispersa y brindarte, en un único documento estructurado para computadora y celular, <strong>todo lo que necesitás saber para atender con excelencia clínica, agilidad operativa y absoluto resguardo médico-legal</strong> desde tu primer día de consultorio.
+        </p>
+
+        <div class="callout callout-info">
+          <div class="callout-title">💡 La diferencia fundamental entre el Consultorio Asistencial y el Consultorio del CEL</div>
+          <p style="margin-bottom:0;">
+            En el consultorio asistencial tu objetivo es diagnosticar y tratar a un paciente individual. En el consultorio del CEL, en cambio, ejercés una <strong>función médico-pericial y preventiva de seguridad vial pública</strong>: cada dictamen de aptitud que firmás en el sistema <strong>Si.Na.Li.C.</strong> constituye un acto administrativo federal y provincial que certifica que el postulante posee las condiciones psicofísicas requeridas por los Baremos de la Agencia Nacional de Seguridad Vial (ANSV) para conducir sin poner en riesgo su vida ni la de terceros.
+          </p>
+        </div>
+
+        <h3>¿Cómo aprovechar este Ebook en Celular, PC o PDF?</h3>
+        <ul>
+          <li><strong>1. Enlaces híbridos (Repositorio + Web Oficial):</strong> Los botones verdes y azules abren directamente los archivos legales almacenados en el proyecto (y saltan al artículo o baremo exacto). Además, cada módulo incluye enlaces <code>🌐 Web Oficial</code> a InfoLeg y Normas GBA para que funcionen incluso si compartís únicamente el archivo PDF por WhatsApp.</li>
+          <li><strong>2. Plan de Estudio de 7 Días (Capítulo 1):</strong> Selección quirúrgica de los artículos y apartados que rigen tu firma médica.</li>
+          <li><strong>3. Calculadoras y Escalas Clínicas Interactivas (Capítulo 4):</strong> Conversor de agudeza visual Snellen, calculadora STOP-BANG / Epworth para Apnea del Sueño y puntuación del Test del Reloj para adultos mayores (&ge; 70 años).</li>
+          <li><strong>4. Plantillas Listas para Copiar y Checklist de Certificados (Capítulo 6):</strong> Textos periciales redactados para evoluciones de <em>Apto</em>, <em>Vigencia Reducida</em>, <em>Retención / Interconsulta</em> y <em>No Apto</em>.</li>
+        </ul>
+      </article>
+
+      <!-- CAPÍTULO 1: PLAN DE ESTUDIO EN 7 DÍAS -->
+      <article class="chapter-card" id="cap-estudio">
+        <div class="chapter-header">
+          <span class="chapter-eyebrow">Capítulo 1 · Hoja de Ruta Formativa</span>
+          <h2>Plan de Estudio Guiado en 7 Días (Qué Leer Exactamente en Cada Archivo)</h2>
+          <p>Marcá cada módulo a medida que completás la lectura. Tu avance queda guardado automáticamente en tu dispositivo.</p>
+        </div>
+
+        <!-- MÓDULO 1 -->
+        <div class="study-module">
+          <div class="study-module-header">
+            <div class="study-module-title">Día 1 · Procedimiento del Examen Psicofísico y Baremos Sensoriales (Visión, Audición y Locomotor)</div>
+            <label class="study-check-label">
+              <input type="checkbox" class="study-checkbox" data-module-id="mod-dia-1" />
+              Marcar como leído
+            </label>
+          </div>
+          <p>Este módulo representa el <strong>60% de las decisiones cotidianas</strong> en el box médico del CEL.</p>
+          <div class="file-links-grid">
+            <a class="btn-doc-link anchor-jump" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_219_2025_Manual_y_Baremos_Psicofisicos_norma.htm#procedimiento-10">🎯 Ir a Procedimiento (Ap. 10 a 14 – Disp. 219/2025)</a>
+            <a class="btn-doc-link anchor-jump" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_219_2025_Manual_y_Baremos_Psicofisicos_norma.htm#baremo-visual">👁️ Ir a Baremo Visual (Ap. 15.1 – Disp. 219/2025)</a>
+            <a class="btn-doc-link" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_300_2025_Baremo_Capacidad_Auditiva_norma.htm">👂 Abrir Disposición ANSV 300/2025 (Nuevo Baremo Auditivo)</a>
+            <a class="btn-doc-link anchor-jump" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_219_2025_Manual_y_Baremos_Psicofisicos_norma.htm#baremo-locomotor">🦴 Ir a Baremo Locomotor (Ap. 15.6 – Disp. 219/2025)</a>
+            <a class="btn-doc-link web-official" target="_blank" href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/415000-419999/419218/norma.htm">🌐 InfoLeg Disp. 219/25</a>
+            <a class="btn-doc-link web-official" target="_blank" href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/420000-424999/421495/norma.htm">🌐 InfoLeg Disp. 300/25</a>
+          </div>
+          <div class="reading-guide-box">
+            <strong>📌 Qué leer exactamente en estos archivos (No leer el resto del documento):</strong>
+            <ul>
+              <li>En <code>Disposicion_ANSV_219_2025</code>: Leer únicamente el <strong>Título II (Examen Psicofísico)</strong>:
+                <ul>
+                  <li><strong>Apartados 10.1 a 10.6:</strong> Qué hacer cuando el postulante resulta <em>Apto</em> (10.3), <em>No Apto Transitorio</em> (10.4), requiere <em>Interconsulta o estudio ampliatorio</em> (10.5) o resulta <em>No Apto</em> (10.6).</li>
+                  <li><strong>Apartados 11, 12 y 13:</strong> Derechos del aspirante No Apto, ampliación de exámenes y conformación de la Junta Médica.</li>
+                  <li><strong>Apartados 14.1 a 14.4:</strong> Pautas del Examen Clínico, Sensorial y Psicológico.</li>
+                  <li><strong>Apartado 15.1 (Capacidad Visual) y 15.6 (Sistema Locomotor):</strong> Memorizar la diferencia entre <strong>Grupo 1 (Clases A, B, G)</strong> y <strong>Grupo 2 (Clases C, D, E)</strong>.</li>
+                </ul>
+              </li>
+              <li>En <code>Disposicion_ANSV_300_2025</code>: Leer completo (es breve, 3 páginas). Sustituye el apartado 15.2 de Capacidad Auditiva e introduce los criterios vigentes para hipoacusia y adaptaciones de espejos.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- MÓDULO 2 -->
+        <div class="study-module">
+          <div class="study-module-header">
+            <div class="study-module-title">Día 2 · Baremos Clínicos, Cardiológicos, Neurológicos, Metabólicos y Salud Mental</div>
+            <label class="study-check-label">
+              <input type="checkbox" class="study-checkbox" data-module-id="mod-dia-2" />
+              Marcar como leído
+            </label>
+          </div>
+          <p>Define cuándo otorgar vigencia reducida, cuándo retener el trámite para pedir informe al especialista y cuándo inhabilitar.</p>
+          <div class="file-links-grid">
+            <a class="btn-doc-link anchor-jump" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_219_2025_Manual_y_Baremos_Psicofisicos_norma.htm#baremo-cardiovascular">❤️ Ir a Baremo Cardiovascular (Ap. 15.7)</a>
+            <a class="btn-doc-link anchor-jump" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_219_2025_Manual_y_Baremos_Psicofisicos_norma.htm#baremo-nervioso">🧠 Ir a Baremo Neurológico (Ap. 15.8)</a>
+            <a class="btn-doc-link anchor-jump" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_219_2025_Manual_y_Baremos_Psicofisicos_norma.htm#baremo-endocrino">🩸 Ir a Baremo Endócrino / Diabetes (Ap. 15.9)</a>
+            <a class="btn-doc-link anchor-jump" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_219_2025_Manual_y_Baremos_Psicofisicos_norma.htm#baremo-mental">🧩 Ir a Salud Mental, Sustancias y Cognición (Ap. 15.3 a 15.5)</a>
+            <a class="btn-doc-link" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Manual_Examen_Medico_Psicofisico_ANSV_Art14.pdf">📕 Abrir Manual Técnico Ilustrado ANSV (PDF)</a>
+          </div>
+          <div class="reading-guide-box">
+            <strong>📌 Qué leer exactamente en estos archivos:</strong>
+            <ul>
+              <li>En <code>Disposicion_ANSV_219_2025</code>:
+                <ul>
+                  <li><strong>Ap. 15.3, 15.4 y 15.5:</strong> Trastornos mentales, consumo de sustancias y deterioro cognitivo.</li>
+                  <li><strong>Ap. 15.7 (Cardiovascular):</strong> Insuficiencia cardíaca (NYHA), marcapasos, cardiodesfibrilador implantable (CDI), síncope, hipertensión arterial y cardiopatía isquémica.</li>
+                  <li><strong>Ap. 15.8 (Neurológico):</strong> Epilepsia (crisis convulsivas, períodos libres de crisis para Grupo 1 vs. inhabilitación para Grupo 2), ACV/AIT, Parkinson y vértigo.</li>
+                  <li><strong>Ap. 15.9 (Endócrino) y 15.10 (Otros / Apnea del Sueño, Renal):</strong> Diabetes Mellitus tipo 1 y 2 (tratamiento oral vs. insulino-dependiente) y Síndrome de Apnea Obstructiva del Sueño (SAOS).</li>
+                </ul>
+              </li>
+              <li>En <code>Manual_Examen_Medico_Psicofisico_ANSV_Art14.pdf</code>: Revisar las páginas de semiotecnia rápida de consultorio (campimetría por confrontación, maniobras de coordinación y equilibrio, test de Snellen/Ishihara).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- MÓDULO 3 -->
+        <div class="study-module">
+          <div class="study-module-header">
+            <div class="study-module-title">Día 3 · Marco Legal Nacional de Tránsito: Clases de Licencias, Edades y Vigencias</div>
+            <label class="study-check-label">
+              <input type="checkbox" class="study-checkbox" data-module-id="mod-dia-3" />
+              Marcar como leído
+            </label>
+          </div>
+          <div class="file-links-grid">
+            <a class="btn-doc-link anchor-jump" target="_blank" href="../Marco%20Legal%20Nacional/Ley_24449_Transito_Texto_Actualizado.html#cap-licencia">⚖️ Ir a Ley 24.449 – Arts. 13 a 20 (Licencia Nacional)</a>
+            <a class="btn-doc-link anchor-jump" target="_blank" href="../Marco%20Legal%20Nacional/Decreto_779_1995_Reglamentario_Ley_24449_texactdto779-1995-anexo1.htm#art-13">📜 Ir a Decreto 779/95 Anexo 1 – Reglamentación Arts. 13 a 20</a>
+            <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Decreto_196_2025_Modificacion_Reglamentacion_Transito_texact.htm">🆕 Abrir Decreto 196/2025 (Reforma de Vigencias y Clases)</a>
+            <a class="btn-doc-link" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_54_2025_Reforma_SiNaLiC_norma.htm">🏛️ Abrir Disposición ANSV 54/2025</a>
+            <a class="btn-doc-link web-official" target="_blank" href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/818/texact.htm">🌐 InfoLeg Ley 24.449</a>
+            <a class="btn-doc-link web-official" target="_blank" href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/30000-34999/30389/texactdto779-1995-anexo1.htm">🌐 InfoLeg Dto. 779/95</a>
+          </div>
+          <div class="reading-guide-box">
+            <strong>📌 Qué leer exactamente en estos archivos (Omitir todos los demás artículos de tránsito):</strong>
+            <ul>
+              <li>En <code>Ley_24449_Transito_Texto_Actualizado.html</code>: Leer <strong>únicamente del Artículo 13 al Artículo 20</strong> (Título III, Capítulo II):
+                <ul>
+                  <li><strong>Art. 14 inc. a.4:</strong> Componentes obligatorios del examen médico psicofísico (aptitud física, visual, auditiva y psíquica).</li>
+                  <li><strong>Art. 16:</strong> Clases de licencias (A, B, C, D, E, F para adaptados y G).</li>
+                  <li><strong>Art. 19:</strong> Obligación del conductor de denunciar todo cambio en su aptitud psicofísica y facultad de disponer un nuevo examen médico.</li>
+                </ul>
+              </li>
+              <li>En <code>Decreto_779_1995_anexo1</code> y <code>Decreto_196_2025</code>: Leer la reglamentación de los <strong>Artículos 13, 14, 16 y 20</strong> (topes de vigencia por franja etaria: menores de 65 años, mayores de 65 años, renovación anual desde los 70 años y facultad del médico examinador para reducir la vigencia ante patologías evolutivas).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- MÓDULO 4 -->
+        <div class="study-module">
+          <div class="study-module-header">
+            <div class="study-module-title">Día 4 · Normativa y Procedimientos de la Provincia de Buenos Aires (CEL Avellaneda)</div>
+            <label class="study-check-label">
+              <input type="checkbox" class="study-checkbox" data-module-id="mod-dia-4" />
+              Marcar como leído
+            </label>
+          </div>
+          <div class="file-links-grid">
+            <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Normativa_Vial_Provincia_Buenos_Aires_Resumen_manual_tramitacion.pdf">📘 Abrir Manual de Tramitación en CELs PBA (PDF)</a>
+            <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Disposicion_20_2019_Anexo_Clases_y_Subclases_Licencias_PBA.pdf">📋 Abrir Tabla de Clases y Subclases PBA (Disp. 20/19 PDF)</a>
+            <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Ley_Provincial_13927_Codigo_Transito_PBA.html">🏛️ Abrir Ley Provincial 13.927 (Código de Tránsito PBA)</a>
+            <a class="btn-doc-link anchor-jump" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Decreto_Provincial_532_2009_Reglamentario_Ley_13927.html#anexo-ii">📑 Ir a Anexo II del Decreto PBA 532/2009 (Licencias)</a>
+            <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Ley_Provincial_15402_Alcohol_Cero_al_Volante_PBA.html">🚫 Abrir Ley PBA 15.402 (Alcohol y Psicotrópicos Cero)</a>
+            <a class="btn-doc-link web-official" target="_blank" href="https://normas.gba.gob.ar/documentos/0YqDnfd0.html">🌐 Normas GBA Ley 13.927</a>
+            <a class="btn-doc-link web-official" target="_blank" href="https://normas.gba.gob.ar/documentos/B3yPzhj0.html">🌐 Normas GBA Dto. 532/09</a>
+          </div>
+          <div class="reading-guide-box">
+            <strong>📌 Qué leer exactamente en estos archivos:</strong>
+            <ul>
+              <li><code>manual_tramitacion.pdf</code>: <strong>Lectura íntegra recomendada (muy breve).</strong> Explica el circuito administrativo-médico exacto dentro de los CELs bonaerenses, el Formulario Único de Trámite (FUT), la Declaración Jurada de Padecimientos (DDJJ) y el circuito de Juntas Médicas de la Provincia.</li>
+              <li><code>Disposicion_20_2019_Anexo_Clases_y_Subclases_Licencias_PBA.pdf</code>: Revisar la tabla de códigos de clases y subclases (A1.1 a G3 y Clase F).</li>
+              <li><code>Decreto_Provincial_532_2009</code>: Leer el <strong>Anexo II – Título I (Sistema Provincial de Licencias de Conducir)</strong>.</li>
+              <li><code>Ley_Provincial_15402</code>: Leer el <strong>Artículo 28 ter</strong> (prohibición absoluta de conducir con alcoholemia &gt; 0 mg/L o bajo la acción de medicamentos/psicotrópicos que disminuyan la aptitud).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- MÓDULO 5 -->
+        <div class="study-module">
+          <div class="study-module-header">
+            <div class="study-module-title">Día 5 · Blindaje Médico-Legal, Historia Clínica, Datos Sensibles y Ética Colegial</div>
+            <label class="study-check-label">
+              <input type="checkbox" class="study-checkbox" data-module-id="mod-dia-5" />
+              Marcar como leído
+            </label>
+          </div>
+          <div class="file-links-grid">
+            <a class="btn-doc-link anchor-jump" target="_blank" href="../Marco%20Legal%20Nacional/Ley_17132_Ejercicio_de_la_Medicina_Texto_Actualizado.html#art-19">⚕️ Ir a Ley 17.132 – Arts. 19 y 20 (Ejercicio de la Medicina)</a>
+            <a class="btn-doc-link anchor-jump" target="_blank" href="../Marco%20Legal%20Nacional/Codigo_Penal_Ley_11179_Texto_Actualizado.html#art-293">🚨 Ir a Código Penal – Arts. 292, 293 y 295 (Falsedad Ideológica)</a>
+            <a class="btn-doc-link anchor-jump" target="_blank" href="../Marco%20Legal%20Nacional/Codigo_Civil_y_Comercial_Ley_26994_Texto_Actualizado.html#art-1725">🛡️ Ir a CCyC – Arts. 1724, 1725 y 1768 (Responsabilidad Profesional)</a>
+            <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Ley_26529_Derechos_del_Paciente_e_Historia_Clinica_Texto_Actualizado.html">📂 Abrir Ley 26.529 (Historia Clínica y Derechos del Paciente)</a>
+            <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Ley_25326_Proteccion_Datos_Personales_Datos_Sensibles_Salud.html">🔒 Abrir Ley 25.326 (Protección de Datos Sensibles de Salud)</a>
+            <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Decreto_Ley_5413_1958_Ejercicio_Medicina_y_Colegio_Medicos_PBA.html">🏛️ Abrir Decreto-Ley PBA 5.413/58 (Colegio de Médicos PBA)</a>
+            <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Codigo_de_Etica_Colegio_de_Medicos_PBA_Res_CS_950.pdf">📕 Abrir Código de Ética Colegio de Médicos PBA (PDF)</a>
+          </div>
+          <div class="reading-guide-box">
+            <strong>📌 Qué leer exactamente en estos archivos (Lectura selectiva de resguardo):</strong>
+            <ul>
+              <li><code>Ley_17132</code>: Leer <strong>Artículos 19 y 20</strong> (obligaciones y prohibiciones al emitir certificados y dictámenes médicos).</li>
+              <li><code>Codigo_Penal</code>: Leer <strong>Art. 156</strong> (Violación de secreto profesional), <strong>Art. 248</strong> (Deberes de funcionario público), <strong>Art. 293</strong> (Falsedad ideológica de instrumento público: 1 a 6 años de prisión) y <strong>Art. 295</strong> (Certificado médico falso).</li>
+              <li><code>Codigo_Civil_y_Comercial</code>: Leer <strong>Arts. 1724, 1725 y 1768</strong> (cómo el cumplimiento estricto del Baremo ANSV y la firma de la DDJJ eximen de culpa profesional ante siniestros viales posteriores).</li>
+              <li><code>Ley_26529</code> (Arts. 12 a 21) y <code>Ley_25326</code> (Arts. 2, 7, 8 y 10): Carácter confidencial de los diagnósticos consignados en la DDJJ frente al personal administrativo no médico del CEL.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- MÓDULO 6 Y 7 -->
+        <div class="study-module">
+          <div class="study-module-header">
+            <div class="study-module-title">Día 6 · Práctica de Flujo Diario, Calculadoras y Casos Críticos</div>
+            <label class="study-check-label">
+              <input type="checkbox" class="study-checkbox" data-module-id="mod-dia-6" />
+              Marcar como leído
+            </label>
+          </div>
+          <p>Estudiar a fondo los <strong>Capítulos 2, 3, 4 y 5 de este mismo Ebook</strong> (Protocolo de los 5 minutos, Tablas comparativas Grupo 1 vs. Grupo 2, Subclases, Calculadoras clínicas y resolución de los 8 casos críticos).</p>
+        </div>
+
+        <div class="study-module">
+          <div class="study-module-header">
+            <div class="study-module-title">Día 7 · Dominio de Plantillas de Redacción Pericial, Auditoría de Certificados y Vademécum</div>
+            <label class="study-check-label">
+              <input type="checkbox" class="study-checkbox" data-module-id="mod-dia-7" />
+              Marcar como leído
+            </label>
+          </div>
+          <p>Practicar con las plantillas del <strong>Capítulo 6</strong> y dejar impreso el <strong>Vademécum de Bolsillo (Capítulo 9)</strong> sobre el escritorio del consultorio.</p>
+        </div>
+      </article>
+
+      <!-- CAPÍTULO 2: FLUJO DIARIO EN EL CONSULTORIO -->
+      <article class="chapter-card" id="cap-flujo">
+        <div class="chapter-header">
+          <span class="chapter-eyebrow">Capítulo 2 · Operativa Diaria en Avellaneda</span>
+          <h2>El Flujo Diario en el Consultorio del CEL (Protocolo de los 5 Minutos)</h2>
+          <p>Cómo estructurar la atención para mantener agilidad operativa (30 a 60 postulantes por turno) sin descuidar jamás el rigor semiológico ni tu resguardo pericial.</p>
+        </div>
+
+        <h3>1. Antes de llamar al primer postulante (5 minutos previos al inicio del turno)</h3>
+        <ul>
+          <li><strong>Seguridad de tu Usuario Si.Na.Li.C. y Sello Profesional:</strong> Tu usuario informático y tu sello físico son equivalentes a tu firma ológrafa en un instrumento público. <strong>Nunca dejes la sesión abierta en la PC si te retirás del box</strong> (ni siquiera por 2 minutos) y <strong>jamás dejes tu sello sobre el escritorio sin tu presencia</strong>.</li>
+          <li><strong>Verificación del instrumental:</strong> Comprobá el correcto encendido y distancia del optotipo/visiotest, elementos de campimetría/visión cromática y provisión de formularios de solicitud de interconsulta médica.</li>
+        </ul>
+
+        <h3>2. El Protocolo de los 5 Minutos por Postulante</h3>
+        <div class="timeline">
+          <div class="timeline-step">
+            <div class="timeline-badge">Minuto 1</div>
+            <div>
+              <strong>La Regla de los "3 Segundos de Oro" (Identidad + Clase + DDJJ)</strong>
+              <p style="margin-bottom:0.4rem;">Mientras el postulante ingresa por la puerta y camina hacia el escritorio (momento en el que ya estás evaluando su <strong>marcha, postura, simetría motora y coordinación</strong>):</p>
+              <ol>
+                <li><strong>DNI en mano vs. Rostro del postulante:</strong> Verificá que la persona sentada frente a vos sea efectivamente el titular del trámite en el FUT / pantalla del Si.Na.Li.C.</li>
+                <li><strong>Clase de Licencia solicitada:</strong> Mirá de inmediato si solicita <strong>Grupo 1 (Clases A, B, G – Particular)</strong> o <strong>Grupo 2 (Clases C, D, E – Profesional: camión, colectivo, taxi, remis, ambulancia)</strong>. Si es Grupo 2, el punto de corte del baremo es mucho más estricto.</li>
+                <li><strong>Edad del postulante:</strong> Determina el tope legal de vigencia y activa el protocolo de pesquisa cognitiva/visual en mayores de 65 y 70 años.</li>
+                <li><strong>Lectura y Firma Presencial de la Declaración Jurada de Salud (DDJJ):</strong> Revisá si marcó algún casillero en <strong>"SÍ"</strong>. Aunque haya marcado todo en "NO", realizá siempre las 2 preguntas verbales de control mientras firmás: <em>"¿Tomás alguna medicación todos los días? ¿Tuviste alguna cirugía, internación, diabetes o problema cardíaco o de la vista?"</em>. El postulante debe firmar la DDJJ en tu presencia.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="timeline-badge">Minutos 2 y 3</div>
+            <div>
+              <strong>Evaluación Sensorial: Agudeza Visual, Campo Visual y Audición</strong>
+              <ul>
+                <li><strong>Agudeza Visual (AV):</strong> Evaluá ojo derecho (OD), ojo izquierdo (OE) y visión binocular. Primero sin corrección y, si no alcanza el corte, con sus lentes aéreos o de contacto.
+                  <br/><em>Regla práctica:</em> Si necesitó usar anteojos o lentes de contacto para alcanzar el corte reglamentario (0,6 en Grupo 1 o 0,8/0,5 en Grupo 2), es obligatorio tildar la restricción <strong>"Con Corrección Óptica / Usa Lentes"</strong>.</li>
+                <li><strong>Visión Cromática, Campo Visual y Encandilamiento:</strong> Reconocimiento de colores primarios del semáforo, campimetría por confrontación horizontal/vertical y recuperación al deslumbramiento.</li>
+                <li><strong>Capacidad Auditiva:</strong> Control conversacional / audiométrico acorde a la Disposición ANSV 300/2025. Si utiliza audífono para alcanzar el umbral, consignar restricción de <strong>"Uso obligatorio de otoamplífono"</strong>.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="timeline-badge">Minuto 4</div>
+            <div>
+              <strong>Examen Clínico, Osteomioarticular, Neurológico y Cognitivo Rápido</strong>
+              <ul>
+                <li><strong>Maniobras motoras rápidas (sentado/de pie):</strong> Pedile que cierre y abra ambas manos con fuerza (prensión palmar para el volante), eleve ambos miembros superiores, rote el cuello hacia ambos lados (visión de espejos), realice prueba índice-nariz y flexo-extensión de tobillos (accionamiento de pedales).</li>
+                <li><strong>Pesquisa de Apnea del Sueño (SAOS) y Cardiovascular:</strong> En postulantes con obesidad marcada, cuello corto/ancho o somnolencia (especialmente Grupo 2: camiones/transporte de pasajeros), indagá ronquidos, pausas respiratorias y somnolencia diurna (Escala de Epworth / STOP-BANG) y controlá tensión arterial.</li>
+                <li><strong>Cribado Cognitivo en Adultos Mayores (&ge; 70 años):</strong> Evaluá orientación témporo-espacial, atención y memoria episódica durante la anamnesis. Ante cualquier duda o bradipsiquia/desorientación, aplicá el <strong>Test del Reloj</strong> (dibujar la esfera y marcar las 11:10) y articulá con el área psicológica del CEL.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="timeline-badge">Minuto 5</div>
+            <div>
+              <strong>Dictamen Pericial, Carga en Si.Na.Li.C. y Resguardo del Legajo</strong>
+              <p style="margin-bottom:0.35rem;">Seleccioná una de las <strong>4 conductas posibles</strong> en el sistema:</p>
+              <ol>
+                <li><span class="badge badge-apto">1. Apto (Sin Restricciones)</span> Cumple el 100% del baremo para su clase y edad.</li>
+                <li><span class="badge badge-warn">2. Apto con Restricciones y/o Vigencia Reducida</span> Requiere lentes, audífono, espejos panorámicos, adaptación vehicular (Clase F / caja automática) o <strong>acortamiento del plazo de validez</strong> (ej.: 1 o 2 años) por patología crónica compensada.</li>
+                <li><span class="badge badge-info">3. Retenido / Pendiente de Interconsulta (Ap. 10.4 / 10.5 Disp. 219/25)</span> Cuando detectás una patología sin certificado actual, HTA descompensada en el acto (&ge; 180/110 mmHg) o falta de anteojos. Se entrega pedido de interconsulta y el trámite queda pausado.</li>
+                <li><span class="badge badge-noapto">4. No Apto (Inhabilitado – Ap. 10.6 Disp. 219/25)</span> No alcanza el baremo mínimo ni con corrección/tratamiento (ej.: visión monocular pidiendo clase profesional D1). Se informa derecho a Junta Médica Provincial.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-warn">
+          <div class="callout-title">🛡️ Regla de Oro al adjuntar Certificados de Especialistas al Legajo</div>
+          <p style="margin-bottom:0;">
+            Cada vez que otorgues un <em>Apto</em> o <em>Apto con vigencia reducida</em> respaldado en el informe de un médico especialista externo (cardiólogo, neurólogo, endocrinólogo, oftalmólogo, psiquiatra), <strong>asegurate de que el certificado original o copia firmada quede abrochado al FUT físico y/o digitalizado en el legajo del CEL</strong>, colocando tu sello y la leyenda: <em>"Se adjunta certificado de especialista al legajo en fecha DD/MM/AAAA"</em>.
+          </p>
+        </div>
+      </article>
+
+      <!-- CAPÍTULO 3: SÍNTESIS MAESTRA DE BAREMOS ANSV Y SUBCLASES -->
+      <article class="chapter-card" id="cap-baremos">
+        <div class="chapter-header">
+          <span class="chapter-eyebrow">Capítulo 3 · Tablas de Referencia Rápida</span>
+          <h2>Síntesis Maestra de Subclases y Baremos de Aptitud Psicofísica (ANSV Disp. 219/2025 y 300/2025)</h2>
+          <p>Tabla oficial de Subclases (A1.1 a G3 y Clase F) y comparativa directa entre <strong>Grupo 1 (Particulares)</strong> y <strong>Grupo 2 (Profesionales)</strong>.</p>
+        </div>
+
+        <h3>1. Tabla Completa de Clases, Subclases, Edades Mínimas y Requisitos (PBA / Si.Na.Li.C.)</h3>
+        <div class="file-links-grid">
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Disposicion_20_2019_Anexo_Clases_y_Subclases_Licencias_PBA.pdf">📋 Abrir Anexo Oficial Disposición 20/19 – Clases y Subclases PBA (PDF)</a>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Clase / Subclase</th>
+                <th>Grupo Baremo</th>
+                <th>Vehículos que Habilita</th>
+                <th>Edad Mínima y Requisitos Especiales</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>A1.1 / A1.2 / A1.3 / A1.4</strong></td>
+                <td><span class="badge badge-apto">Grupo 1</span></td>
+                <td>Ciclomotores hasta 50 cc (A1.1), motos hasta 150 cc (A1.2), hasta 300 cc (A1.3) y más de 300 cc (A1.4). Incluye subclases A2.1/A2.2 (triciclos/cuatriciclos) y A3 (motos uso comercial/delivery).</td>
+                <td>Desde 16 años (solo A1.1 sin pasajeros) / 17–18 años. Para A1.4 (&gt; 300 cc) requiere 2 años de antigüedad previa en A1.3 o ser mayor de 21 años.</td>
+              </tr>
+              <tr>
+                <td><strong>B1 / B2</strong></td>
+                <td><span class="badge badge-apto">Grupo 1</span></td>
+                <td>Automóviles, utilitarios y camionetas hasta 3.500 kg de peso total (B1) y con acoplado de hasta 750 kg o casa rodante no motorizada (B2, requiere 1 año en B1).</td>
+                <td>17 años (con autorización de representantes legales) / 18 años. Principiante por los primeros 6 meses.</td>
+              </tr>
+              <tr>
+                <td><strong>C1 / C2 / C3</strong></td>
+                <td><span class="badge badge-warn">Grupo 2 (Profesional)</span></td>
+                <td>Camiones sin acoplado ni semiacoplado y casas rodantes motorizadas &gt; 3.500 kg: hasta 12.000 kg (C1), hasta 24.000 kg (C2) y más de 24.000 kg (C3).</td>
+                <td><strong>21 años</strong> (requiere 1 año de antigüedad previa en Clase B). Primera vez como profesional no puede superar los 65 años.</td>
+              </tr>
+              <tr>
+                <td><strong>D1 / D2 / D3 / D4</strong></td>
+                <td><span class="badge badge-warn">Grupo 2 (Profesional)</span></td>
+                <td>Transporte de pasajeros: hasta 8 plazas (D1: taxi, remis, apps), hasta 20 plazas (D2), más de 20 plazas / colectivos (D3), y servicios de urgencia, emergencia, policía, bomberos o ambulancias (D4).</td>
+                <td><strong>21 años</strong> (requiere 1 año de antigüedad en B, certificado de antecedentes penales y evaluación psicofísica Grupo 2 estricta).</td>
+              </tr>
+              <tr>
+                <td><strong>E1 / E2</strong></td>
+                <td><span class="badge badge-warn">Grupo 2 (Profesional)</span></td>
+                <td>Vehículos articulados con acoplado o semirremolque (E1) y maquinaria especial no agrícola (E2).</td>
+                <td><strong>21 años</strong> (1 año de antigüedad previa en B o C según corresponda).</td>
+              </tr>
+              <tr>
+                <td><strong>Clase F (Adaptados)</strong></td>
+                <td><span class="badge badge-info">Evaluación Funcional</span></td>
+                <td>Vehículos con adaptación técnica acorde a la discapacidad motora del titular (complementa la clase A o B correspondiente).</td>
+                <td>Prueba práctica en el vehículo adaptado + consignación exacta de los códigos de adaptación vehicular.</td>
+              </tr>
+              <tr>
+                <td><strong>G1 / G2 / G3</strong></td>
+                <td><span class="badge badge-apto">Grupo 1</span></td>
+                <td>Tractores agrícolas (G1), maquinaria especial agrícola (G2) y tren agrícola (G3).</td>
+                <td>17 / 18 años. Evaluación psicofísica Grupo 1.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>2. Baremo Oftalmológico (Apartado 15.1 – Disposición ANSV 219/2025)</h3>
+        <div class="file-links-grid">
+          <a class="btn-doc-link anchor-jump" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_219_2025_Manual_y_Baremos_Psicofisicos_norma.htm#baremo-visual">👁️ Ver texto oficial completo del Apartado 15.1 en Disposición 219/2025</a>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Parámetro Visual</th>
+                <th>Grupo 1 (Particulares: Clases A, B, G)</th>
+                <th>Grupo 2 (Profesionales: Clases C, D, E)</th>
+                <th>Conducta y Restricciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Agudeza Visual Binocular / Monocular (con o sin corrección)</strong></td>
+                <td>Mínimo <strong>0,6 (6/10)</strong> en el mejor ojo y <strong>0,2 (2/10)</strong> en el peor ojo (o &ge; 0,5 en cada ojo), alcanzable con lentes aéreos o de contacto.</td>
+                <td>Mínimo <strong>0,8 (8/10)</strong> en el mejor ojo y <strong>0,5 (5/10)</strong> en el peor ojo, con o sin corrección óptica.</td>
+                <td>Si alcanza el corte solo con anteojos o lentes de contacto &rarr; <span class="badge badge-warn">Apto con Restricción: Uso obligatorio de lentes</span>.</td>
+              </tr>
+              <tr>
+                <td><strong>Visión Monocular</strong><br/>(AV &lt; 1/10 o 0,1 en un ojo)</td>
+                <td><span class="badge badge-warn">Apto con Restricción</span> si cumple:<br/>1) Antigüedad &ge; <strong>6 meses</strong> de pérdida visual;<br/>2) AV en ojo único &ge; <strong>0,8 (8/10)</strong>;<br/>3) Campo visual y visión nocturna normales certificados por oftalmólogo.</td>
+                <td><span class="badge badge-noapto">NO APTO (Inhabilitante)</span><br/>No se admiten excepciones para clases C, D ni E.</td>
+                <td>En Grupo 1 exigir: <strong>Espejos retrovisores laterales panorámicos en ambos lados + espejo interno panorámico + anteojos protectores / casco integral en motos</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>Campo Visual</strong></td>
+                <td>Binocular horizontal &ge; 120° (mínimo 50° nasal y 70° temporal en ojo único) sin escotomas centrales.</td>
+                <td>Campo visual binocular normal completo sin reducciones concéntricas ni hemianopsias.</td>
+                <td>Hemianopsias o cuadrantopsias homónimas &rarr; Retener / Inhabilitar según informe campimétrico computadorizado.</td>
+              </tr>
+              <tr>
+                <td><strong>Diplopía y Estrabismo</strong></td>
+                <td>Diplopía activa es <span class="badge badge-noapto">No Apto</span> (salvo oclusión con &ge; 6 meses de adaptación tratándose como monocular).</td>
+                <td><span class="badge badge-noapto">NO APTO</span> toda diplopía o falta de visión binocular.</td>
+                <td>Solicitar interconsulta oftalmológica si se detecta desviación ocular aguda o ptosis que cubra el eje pupilar.</td>
+              </tr>
+              <tr>
+                <td><strong>Cirugía de Catarata (Pseudofaquia) / Refractiva</strong></td>
+                <td>Apto tras período de recuperación posoperatoria (1 mes en catarata) con alta oftalmológica y tolerancia al encandilamiento.</td>
+                <td>Apto tras recuperación posoperatoria documentada, alcanzando AV 0,8 / 0,5 y sin deslumbramiento patológico.</td>
+                <td>Otorgar vigencia reducida o control según evolución de la patología de base.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>3. Baremo Auditivo (Apartado 15.2 – Actualizado por Disposición ANSV 300/2025)</h3>
+        <div class="file-links-grid">
+          <a class="btn-doc-link" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_300_2025_Baremo_Capacidad_Auditiva_norma.htm">👂 Ver texto oficial completo en Disposición ANSV 300/2025</a>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Condición Auditiva</th>
+                <th>Grupo 1 (Particulares: Clases A, B, G)</th>
+                <th>Grupo 2 (Profesionales: Clases C, D, E)</th>
+                <th>Conducta en el CEL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Hipoacusia Leve a Moderada corregible con Otoamplífono</strong></td>
+                <td><span class="badge badge-warn">Apto con Restricción</span> alcanzando umbral conversacional con audífono.</td>
+                <td><span class="badge badge-warn">Apto con Restricción</span> si con otoamplífono alcanza el umbral requerido para Grupo 2, con control audiométrico periódico.</td>
+                <td>Consignar código de restricción: <strong>Uso obligatorio de otoamplífono / audífono</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>Hipoacusia Severa / Profunda o Anacusia (Sordera Bilateral)</strong></td>
+                <td><span class="badge badge-warn">Apto con Adaptación Vehicular</span> para Clases A y B.</td>
+                <td><span class="badge badge-noapto">NO APTO</span> para transporte de pasajeros / emergencia (Clases D y E). Evaluación estricta según subclase.</td>
+                <td>En Grupo 1 exigir <strong>dos espejos retrovisores laterales convexos/panorámicos y espejo retrovisor interno panorámico</strong>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>4. Baremo Clínico: Cardiología, Neurología, Diabetes, Sueño, Locomotor y Salud Mental</h3>
+        <div class="file-links-grid">
+          <a class="btn-doc-link anchor-jump" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_219_2025_Manual_y_Baremos_Psicofisicos_norma.htm#baremo-cardiovascular">❤️ Ap. 15.7 Cardiovascular</a>
+          <a class="btn-doc-link anchor-jump" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_219_2025_Manual_y_Baremos_Psicofisicos_norma.htm#baremo-nervioso">🧠 Ap. 15.8 Neurológico</a>
+          <a class="btn-doc-link anchor-jump" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_219_2025_Manual_y_Baremos_Psicofisicos_norma.htm#baremo-endocrino">🩸 Ap. 15.9 Endócrino</a>
+          <a class="btn-doc-link anchor-jump" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_219_2025_Manual_y_Baremos_Psicofisicos_norma.htm#baremo-otros">🫁 Ap. 15.10 Respiratorio/Renal</a>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Sistema / Patología</th>
+                <th>Grupo 1 (Particulares: Clases A, B, G)</th>
+                <th>Grupo 2 (Profesionales: Clases C, D, E)</th>
+                <th>Documentación a Exigir y Vigencia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Insuficiencia Cardíaca (NYHA)</strong></td>
+                <td>NYHA I y II: <span class="badge badge-warn">Apto Vigencia Reducida</span>.<br/>NYHA III y IV: <span class="badge badge-noapto">No Apto</span>.</td>
+                <td>NYHA I (FEVI conservada): <span class="badge badge-warn">Apto Anual</span>.<br/>NYHA II, III y IV: <span class="badge badge-noapto">No Apto</span>.</td>
+                <td>Certificado cardiológico con Ecocardiograma (FEVI), clase funcional y ausencia de síncopes.</td>
+              </tr>
+              <tr>
+                <td><strong>Marcapasos Definitivo</strong></td>
+                <td><span class="badge badge-warn">Apto Vigencia Reducida (1 a 3 años)</span> tras período posimplante, asintomático.</td>
+                <td>Evaluación restrictiva posimplante con informe electrofisiológico, telemetría normal y control anual.</td>
+                <td>Informe de cardiólogo/electrofisiólogo acreditando funcionamiento normal del marcapasos y ausencia de síncope.</td>
+              </tr>
+              <tr>
+                <td><strong>Cardiodesfibrilador Implantable (CDI)</strong></td>
+                <td><span class="badge badge-warn">Apto Vigencia Anual</span> solo tras 6 meses sin descargas ni arritmias sincopales e informe electrofisiológico.</td>
+                <td><span class="badge badge-noapto">NO APTO (Inhabilitante)</span> en todos los casos para Grupo 2.</td>
+                <td>En Grupo 1 adjuntar control de telemetría del CDI y certificado de electrofisiología.</td>
+              </tr>
+              <tr>
+                <td><strong>Hipertensión Arterial (HTA) en Consultorio</strong></td>
+                <td>Compensada: Apto.<br/>Cifras &ge; 180/110 mmHg o sintomática en el box: <span class="badge badge-info">Retener Trámite</span>.</td>
+                <td>Estabilidad tensional estricta sin daño de órgano blanco descompensado. Si &ge; 180/110 mmHg: <span class="badge badge-info">Retener</span>.</td>
+                <td>Suspender el acto, derivar para estabilización y pedir informe cardiológico con control de TA.</td>
+              </tr>
+              <tr>
+                <td><strong>Epilepsia y Crisis Convulsivas</strong></td>
+                <td><span class="badge badge-warn">Apto Vigencia Anual</span> con informe neurológico que acredite <strong>mínimo 12 meses libre de crisis</strong>, EEG y adherencia terapéutica.</td>
+                <td><span class="badge badge-noapto">NO APTO</span> (requiere 5 a 10 años sin crisis y <em>sin medicación antiepiléptica</em> con EEG normal).</td>
+                <td>Certificado de neurólogo detallando tipo de epilepsia, fecha de última crisis, medicación y ausencia de sedación.</td>
+              </tr>
+              <tr>
+                <td><strong>Diabetes Mellitus (Oral vs. Insulina)</strong></td>
+                <td>Oral compensada: Apto (vigencia según control).<br/>Insulino-tratado: <span class="badge badge-warn">Apto Vigencia Reducida (1 a 2 años)</span> sin hipoglucemias severas en los últimos 12 meses.</td>
+                <td>Oral compensada: <span class="badge badge-warn">Apto Anual</span>.<br/>Insulino-dependiente: <span class="badge badge-noapto">No Apto</span> en regla general (o evaluación excepcional de Junta Médica).</td>
+                <td>Certificado de endocrinólogo/diabetólogo con HbA1c, control oftalmológico/neurológico y constancia de ausencia de hipoglucemias graves.</td>
+              </tr>
+              <tr>
+                <td><strong>Apnea Obstructiva del Sueño (SAOS)</strong></td>
+                <td>SAOS moderado/severo sin tratamiento: <span class="badge badge-info">Retener</span>.<br/>En tratamiento con CPAP eficaz: <span class="badge badge-warn">Apto Vigencia Reducida (1 a 2 años)</span>.</td>
+                <td>Exigencia estricta: <span class="badge badge-warn">Apto Anual</span> solo con informe neumonológico de adherencia objetiva al CPAP y ausencia de somnolencia diurna.</td>
+                <td>Informe de neumonología / medicina del sueño + reporte de cumplimiento de horas de uso de CPAP.</td>
+              </tr>
+              <tr>
+                <td><strong>Déficit Motor / Amputaciones (Sistema Locomotor)</strong></td>
+                <td><span class="badge badge-warn">Apto con Adaptación (Clase F / B adaptada)</span> previa prueba práctica de manejo en vehículo adaptado.</td>
+                <td><span class="badge badge-noapto">No Apto</span> si compromete la seguridad o maniobrabilidad de transporte público/cargas pesadas.</td>
+                <td>Consignar adaptación exacta (caja automática, pomo giratorio en volante, comandos manuales de freno/acelerador).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- CAPÍTULO 4: CALCULADORAS Y ESCALAS CLÍNICAS INTERACTIVAS -->
+      <article class="chapter-card" id="cap-calculadoras">
+        <div class="chapter-header">
+          <span class="chapter-eyebrow">Capítulo 4 · Herramientas Interactivas de Consultorio</span>
+          <h2>Conversor Visual, Calculadora de Apnea del Sueño (STOP-BANG) y Puntuación del Test del Reloj</h2>
+          <p>Herramientas de uso rápido desde el celular o la PC durante la evaluación en el box.</p>
+        </div>
+
+        <div class="calc-grid">
+          <!-- CONVERSOR DE AGUDEZA VISUAL SNELLEN -->
+          <div class="calc-card">
+            <h4>👁️ Conversor de Escalas de Agudeza Visual (Snellen)</h4>
+            <p style="font-size:0.83rem;">Cuando un oftalmólogo externo envía un certificado expresado en pies (<code>20/25</code>), fracción (<code>8/10</code>) o decimal (<code>0.8</code>), seleccioná el valor aquí:</p>
+            <div class="calc-row">
+              <label for="snellen-converter-select"><strong>Valor informado:</strong></label>
+              <select id="snellen-converter-select" class="calc-select">
+                <option value="1.0">1.0 (10/10 · 20/20)</option>
+                <option value="0.9">0.9 (9/10 · 20/22)</option>
+                <option value="0.8" selected>0.8 (8/10 · 20/25)</option>
+                <option value="0.7">0.7 (7/10 · 20/28)</option>
+                <option value="0.6">0.6 (6/10 · 20/32)</option>
+                <option value="0.5">0.5 (5/10 · 20/40)</option>
+                <option value="0.4">0.4 (4/10 · 20/50)</option>
+                <option value="0.3">0.3 (3/10 · 20/63)</option>
+                <option value="0.2">0.2 (2/10 · 20/100)</option>
+                <option value="0.1">0.1 (1/10 · 20/200)</option>
+              </select>
+            </div>
+            <div class="calc-result-box" id="snellen-converter-output"></div>
+          </div>
+
+          <!-- CALCULADORA STOP-BANG PARA APNEA DEL SUEÑO -->
+          <div class="calc-card">
+            <h4>🫁 Cribado Rápido STOP-BANG para Apnea del Sueño (SAOS)</h4>
+            <p style="font-size:0.83rem;">Marcá los criterios presentes en el postulante (especialmente en Clases C, D y E):</p>
+            <div class="calc-row"><label><input type="checkbox" class="stopbang-check" /> <strong>S</strong> (Snore): ¿Ronca fuerte?</label></div>
+            <div class="calc-row"><label><input type="checkbox" class="stopbang-check" /> <strong>T</strong> (Tired): ¿Cansancio o somnolencia diurna?</label></div>
+            <div class="calc-row"><label><input type="checkbox" class="stopbang-check" /> <strong>O</strong> (Observed): ¿Pausas de apnea observadas al dormir?</label></div>
+            <div class="calc-row"><label><input type="checkbox" class="stopbang-check" /> <strong>P</strong> (Pressure): ¿Tiene o se trata por Hipertensión Arterial?</label></div>
+            <div class="calc-row"><label><input type="checkbox" class="stopbang-check" /> <strong>B</strong> (BMI): ¿IMC &gt; 35 kg/m²?</label></div>
+            <div class="calc-row"><label><input type="checkbox" class="stopbang-check" /> <strong>A</strong> (Age): ¿Edad &gt; 50 años?</label></div>
+            <div class="calc-row"><label><input type="checkbox" class="stopbang-check" /> <strong>N</strong> (Neck): ¿Perímetro cervical &gt; 40 cm (M) / &gt; 43 cm (H)?</label></div>
+            <div class="calc-row"><label><input type="checkbox" class="stopbang-check" /> <strong>G</strong> (Gender): ¿Sexo masculino?</label></div>
+            <div class="calc-result-box" id="stopbang-result"></div>
+          </div>
+        </div>
+
+        <h3>🕒 Guía Rápida de Puntuación del Test del Reloj a la Orden (Adultos Mayores &ge; 70 años)</h3>
+        <p><strong>Consigna en consultorio:</strong> <em>"Dibuje una esfera redonda de reloj, coloque adentro todos los números de las horas en su lugar y dibuje las agujas marcando las once y diez (11:10)"</em>. Puntaje máximo: <strong>10 puntos</strong> (Corte normal: <strong>&ge; 7 puntos</strong>; Deterioro cognitivo sospechoso que obliga a retener e interconsultar: <strong>&le; 6 puntos</strong>).</p>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Componente Evaluado</th>
+                <th>Puntaje Máximo</th>
+                <th>Criterios de Corrección (Escala de Cacho / Sundström)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Esfera del Reloj</strong></td>
+                <td><strong>2 puntos</strong></td>
+                <td><strong>2 pts:</strong> Dibujo normal (redondo u ovalado con pequeñas distorsiones).<br/><strong>1 pt:</strong> Incompleto o con distorsión significativa.<br/><strong>0 pts:</strong> Ausencia de esfera o irreconocible.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Presencia y Secuencia de los Números (1 al 12)</strong></td>
+                <td><strong>4 puntos</strong></td>
+                <td><strong>4 pts:</strong> Todos los números del 1 al 12 presentes, sin adiciones ni omisiones, en orden y cuadrantes correctos.<br/><strong>3 pts:</strong> Todos presentes con leve error espacial o números fuera de la esfera.<br/><strong>2 pts:</strong> Omisión o adición de algún número o alineación en un solo hemicampo.<br/><strong>1 pt:</strong> Gran distorsión espacial o secuencia invertida.<br/><strong>0 pts:</strong> Ausencia de números.</td>
+              </tr>
+              <tr>
+                <td><strong>3. Agujas Marcando las 11:10</strong></td>
+                <td><strong>4 puntos</strong></td>
+                <td><strong>4 pts:</strong> Dos agujas de distinta longitud (horaria corta al 11, minutera larga al 2) unidas en el centro.<br/><strong>3 pts:</strong> Agujas en 11 y 2 pero de igual longitud o no unidas en el centro.<br/><strong>2 pts:</strong> Solo una aguja correcta o marca "11 y 10" apuntando al número 10 en vez del 2 (error concreto frontal).<br/><strong>1 pt:</strong> Agujas presentes pero sin relación con la hora pedida.<br/><strong>0 pts:</strong> Sin agujas.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- CAPÍTULO 5: LOS 8 CASOS CLÍNICOS CRÍTICOS -->
+      <article class="chapter-card" id="cap-casos">
+        <div class="chapter-header">
+          <span class="chapter-eyebrow">Capítulo 5 · Resolución Práctica y Comunicación</span>
+          <h2>Los 8 Casos Clínicos Críticos que Generan Conflicto en el Consultorio</h2>
+          <p>Cómo resolver las situaciones más frecuentes y tensas del CEL con respaldo normativo y guiones de comunicación empática.</p>
+        </div>
+
+        <div class="case-grid">
+          <div class="case-card">
+            <div class="case-card-top">
+              <strong>Caso 1 · El postulante viene con un certificado de su médico de cabecera que dice "Apto para conducir", pero no cumple el Baremo ANSV</strong>
+              <span class="badge badge-noapto">Conflicto Muy Frecuente</span>
+            </div>
+            <p><strong>Escenario:</strong> Un chofer profesional (Clase D1) con visión monocular o portador de CDI trae una receta de su oftalmólogo o cardiólogo particular que dice: <em>"Paciente compensado, apto para conducir todo tipo de vehículos"</em>.</p>
+            <p><strong>Resolución Médico-Legal:</strong> El especialista externo certifica el <em>estado asistencial</em> del paciente, pero <strong>desconoce el Baremo Federal de la ANSV</strong>. La competencia legal exclusiva para otorgar o denegar la aptitud vial en el Si.Na.Li.C. es tuya como Médico Examinador matriculado. El certificado particular se adjunta al legajo, pero prevalece el corte inhabilitante de la Disposición ANSV 219/2025.</p>
+            <div class="callout callout-info" style="margin-bottom:0;">
+              <div class="callout-title">🗣️ Qué decirle al postulante:</div>
+              <em>"El informe de su especialista es muy valioso porque nos confirma que usted está bien controlado clínicamente y nos permite aprobarle su licencia particular Clase B1. Sin embargo, para la categoría profesional Clase D, el sistema nacional de la ANSV tiene una tabla federal obligatoria (Disposición 219/2025) que bloquea esta condición en todo el país. Si usted desea solicitar una revisión excepcional, tiene derecho a que lo evalúe la Junta Médica de la Provincia."</em>
+            </div>
+          </div>
+
+          <div class="case-card">
+            <div class="case-card-top">
+              <strong>Caso 2 · "Me olvidé los anteojos en casa, pero veo bien / solo los uso para leer"</strong>
+              <span class="badge badge-info">Conducta: Retener Trámite</span>
+            </div>
+            <p><strong>Escenario:</strong> El postulante para Clase B1 llega a 4/10 (0,4) binocular sin lentes (el mínimo es 6/10) y pide que lo apruebes prometiendo que va a usar los anteojos.</p>
+            <p><strong>Resolución:</strong> <strong>Jamás apruebes "a futuro" ni bajo promesa verbal.</strong> Si no alcanza 6/10 frente a tu optotipo, no podés saber si su déficit corrige con lentes o si padece una catarata/maculopatía no corregible. Dejá el trámite <strong>Retenido / Pendiente</strong> para que regrese con sus anteojos (cuando vuelva, pasalo sin hacer toda la fila administrativa, medí la agudeza con sus lentes puestos y aprobá con la restricción <em>"Con corrección óptica"</em>).</p>
+          </div>
+
+          <div class="case-card">
+            <div class="case-card-top">
+              <strong>Caso 3 · Adulto Mayor (&ge; 70 años) con bradipsiquia o deterioro cognitivo leve y presión familiar</strong>
+              <span class="badge badge-warn">Conducta: Test Objetivo + Interconsulta</span>
+            </div>
+            <p><strong>Escenario:</strong> Postulante de 79 años en renovación anual. A veces los hijos entran a discutir exigiendo que lo apruebes ("solo usa el auto a 10 cuadras"), o bien te buscan en privado antes de que entre el padre para pedirte que "lo bochés sin decirle que ellos te avisaron porque tiene demencia senil".</p>
+            <p><strong>Resolución:</strong> Nunca decidas por pedidos informales de familiares ni entres en discusiones subjetivas. Realizá el <strong>Test del Reloj</strong> (pedile en una hoja que dibuje un reloj redondo con todos los números y las agujas marcando las 11:10, firmá y fechá esa hoja y abrochala al FUT). Si el test es patológico (&le; 6 puntos), <strong>retené el trámite</strong> solicitando interconsulta con Neurología + Evaluación Neuropsicológica y derivá al área psicológica del CEL.</p>
+          </div>
+
+          <div class="case-card">
+            <div class="case-card-top">
+              <strong>Caso 4 · Pedido informal de "favor" administrativo o político ("¿No le podés firmar igual?")</strong>
+              <span class="badge badge-noapto">Peligro Penal Art. 293 CP</span>
+            </div>
+            <p><strong>Escenario:</strong> Alguien te pide aprobar a un postulante que no está presente físicamente en el consultorio o que tiene una condición inhabilitante sin estudios.</p>
+            <p><strong>Resolución y Guion Diplomático:</strong> Firmar sin haber examinado presencialmente al ciudadano constituye delito de <strong>Falsedad Ideológica de Instrumento Público (Art. 293 del Código Penal: 1 a 6 años de prisión e inhabilitación absoluta)</strong>. La respuesta diplomática que desactiva cualquier presión sin generar roces personales es poner la traba en la auditoría externa de La Plata / Nación:</p>
+            <div class="callout callout-warn" style="margin-bottom:0;">
+              <div class="callout-title">🗣️ Guion diplomático infalible:</div>
+              <em>"Te recontra entiendo y me encantaría darte una mano, pero el sistema Si.Na.Li.C. cruza las cámaras de biometría y audita los legajos desde La Plata y Nación. Si yo cierro el trámite sin que esté él o sin adjuntar el certificado del especialista, salta en la auditoría provincial, le dan de baja la licencia y nos abren un sumario al municipio y a mi matrícula. Apenas traiga el estudio o venga un minuto al box, traémelo directo sin hacer fila que lo atiendo en el acto."</em>
+            </div>
+          </div>
+
+          <div class="case-card">
+            <div class="case-card-top">
+              <strong>Caso 5 · Postulante que marca todo "NO" en la DDJJ pero tiene cicatriz de esternotomía, temblor o amputación</strong>
+              <span class="badge badge-info">Conducta: Rectificación de DDJJ</span>
+            </div>
+            <p><strong>Resolución:</strong> Muchos postulantes ocultan antecedentes por temor a perder la licencia. Si durante el examen físico observás un hallazgo evidente (cicatriz quirúrgica torácica, marcapasos palpable, temblor, hemiparesia, campo visual amputado), hacé que el postulante <strong>amplíe/rectifique la DDJJ de su puño y letra</strong> (o dejá constancia expresa en tu evolución clínica) y retené el trámite solicitando el informe del especialista correspondiente.</p>
+          </div>
+
+          <div class="case-card">
+            <div class="case-card-top">
+              <strong>Caso 6 · Diabetes Mellitus Tipo 1 o Tipo 2 Insulino-Requiente</strong>
+              <span class="badge badge-warn">Grupo 1: Vigencia Reducida / Grupo 2: Restricción Estricta</span>
+            </div>
+            <p><strong>Resolución:</strong> En particulares (Clases A y B), nunca otorgues 5 años de vigencia a un paciente insulinizado ni apruebes sin certificado actual. Retené hasta que presente informe de su diabetólogo/endocrinólogo con <strong>HbA1c, ausencia de hipoglucemias graves en los últimos 12 meses, automonitoreo glucémico y control de fondo de ojo</strong>, y otorgá <strong>Apto con vigencia reducida (12 a 24 meses)</strong>.</p>
+          </div>
+
+          <div class="case-card">
+            <div class="case-card-top">
+              <strong>Caso 7 · Chofer Profesional (Clases C, D, E) con Obesidad Mórbida (IMC &ge; 35–40) y Cuello Ancho</strong>
+              <span class="badge badge-info">Cribado de Apnea del Sueño (SAOS)</span>
+            </div>
+            <p><strong>Resolución:</strong> Los microsueños por Apnea Obstructiva del Sueño son una de las primeras causas de siniestros viales graves en rutas. Si el postulante profesional presenta alto riesgo en el cuestionario STOP-BANG (&ge; 3–5 puntos) o Escala de Epworth (&gt; 10 puntos), retené el trámite y solicitá <strong>evaluación neumonológica / polisomnografía</strong>. Si ya utiliza CPAP, exigí el reporte de cumplimiento objetivo del equipo y otorgá vigencia anual.</p>
+          </div>
+
+          <div class="case-card">
+            <div class="case-card-top">
+              <strong>Caso 8 · Persona con Discapacidad Motora y Certificado Único de Discapacidad (CUD)</strong>
+              <span class="badge badge-warn">Evaluación Funcional + Clase F / Adaptación</span>
+            </div>
+            <p><strong>Resolución:</strong> Poseer CUD (Ley 22.431) <strong>no inhabilita</strong> por sí mismo ni exime de cumplir los requisitos psicofísicos. Evaluá la fuerza y movilidad residual de los cuatro miembros y determiná junto al área de prueba práctica las <strong>adaptaciones homologadas necesarias en el vehículo</strong> (caja automática, pomo giratorio de volante, freno/acelerador manual al volante, inversión de pedalera), consignando la restricción correspondiente en el sistema.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- CAPÍTULO 6: PLANTILLAS DE EVOLUCIÓN Y AUDITORÍA DE CERTIFICADOS -->
+      <article class="chapter-card" id="cap-plantillas">
+        <div class="chapter-header">
+          <span class="chapter-eyebrow">Capítulo 6 · Redacción Médico-Pericial y Control Documental</span>
+          <h2>Plantillas de Evolución, Retención, Dictámenes y Checklist de Certificados Externos</h2>
+          <p>Hacé clic en <strong>"Copiar plantilla"</strong> para pegar el texto en el sistema o utilizarlo como guía en la ficha médica del CEL.</p>
+        </div>
+
+        <h3>A. Checklist de Auditoría: ¿Cuándo Rechazar un Certificado de Especialista Externo?</h3>
+        <div class="callout callout-danger">
+          <div class="callout-title">🔍 Los 5 Requisitos Obligatorios para Aceptar un Certificado de Especialista en el CEL</div>
+          <ol style="margin-bottom:0;">
+            <li><strong>Vigencia Temporal (&le; 30 días):</strong> Todo certificado médico presentado para levantar una retención debe tener fecha reciente (no mayor a 30 días corridos desde su emisión). Certificados de años anteriores o sin fecha carecen de validez.</li>
+            <li><strong>Identificación Completa del Postulante:</strong> Debe consignar Nombre, Apellido y Nº de DNI del candidato.</li>
+            <li><strong>Firma Ológrafa (o Digital Verificable) y Sello Legible con Matrícula:</strong> Debe constar la especialidad y el número de Matrícula Provincial (M.P.) o Nacional (M.N.) del médico firmante.</li>
+            <li><strong>Parámetros Clínicos Objetivos (No basta poner "Apto para conducir"):</strong> Un certificado que solo dice <em>"Apto para conducir"</em> sin informar diagnóstico, medicación ni estabilidad clínica <strong>no te protege legalmente</strong>. Exigí los datos objetivos (ej.: NYHA/FEVI en cardiopatías, tiempo sin crisis en epilepsia, HbA1c y ausencia de hipoglucemias en diabetes, AV exacta en oftalmología).</li>
+            <li><strong>Archivo en el Legajo:</strong> El certificado original (o copia sellada por vos como <em>"Es copia fiel del original tenido a la vista"</em>) debe quedar abrochado al FUT físico y/o digitalizado.</li>
+          </ol>
+        </div>
+
+        <h3>B. Plantillas de Dictamen y Evolución en el CEL</h3>
+
+        <div class="template-card">
+          <div class="template-card-header">
+            <strong>1. Dictamen: APTO SIN RESTRICCIONES (Evolución Estándar Completa)</strong>
+            <button type="button" class="btn-copy" data-copy-target="tpl-apto-total">📋 Copiar plantilla</button>
+          </div>
+          <div class="template-body" id="tpl-apto-total">Postulante concurre con DNI vigente. Suscribe Declaración Jurada de Salud (DDJJ) en mi presencia negando antecedentes patológicos de relevancia. Examen físico clínico y osteomioarticular conservado, marcha, fuerza prensil y coordinación normales. Evaluación visual: Agudeza visual OD [10/10] / OI [10/10] sin corrección; campo visual por confrontación, visión cromática y recuperación al encandilamiento dentro de parámetros normales. Capacidad auditiva conservada (Disp. ANSV 300/2025). Examen psíquico vigil, orientado globalmente, sin alteraciones detectables al momento del examen. Cumple criterios del Baremo ANSV (Disp. 219/2025) para Clase [B1]. Dictamen: APTO.</div>
+        </div>
+
+        <div class="template-card">
+          <div class="template-card-header">
+            <strong>2. Dictamen: APTO CON RESTRICCIÓN ÓPTICA / AUDITIVA</strong>
+            <button type="button" class="btn-copy" data-copy-target="tpl-apto-restriccion">📋 Copiar plantilla</button>
+          </div>
+          <div class="template-body" id="tpl-apto-restriccion">Postulante suscribe DDJJ en mi presencia. Examen clínico general, osteomioarticular y neurológico dentro de parámetros normales. Evaluación sensorial: Agudeza visual sin corrección inferior al corte reglamentario; CON CORRECCIÓN ÓPTICA alcanza OD [9/10] / OI [8/10], con campo visual, visión cromática y recuperación al encandilamiento conservados. Capacidad auditiva [conservada / compensada con uso de otoamplífono]. Cumple criterios del Baremo ANSV (Disp. 219/2025 y 300/2025) para Clase [B1] condicionado al uso permanente de corrección. Dictamen: APTO CON RESTRICCIÓN (Uso obligatorio de lentes correctores [y/o audífono]).</div>
+        </div>
+
+        <div class="template-card">
+          <div class="template-card-header">
+            <strong>3. Dictamen: APTO CON VIGENCIA REDUCIDA (Patología Crónica Compensada + Certificado Especialista)</strong>
+            <button type="button" class="btn-copy" data-copy-target="tpl-apto-reducida">📋 Copiar plantilla</button>
+          </div>
+          <div class="template-body" id="tpl-apto-reducida">Postulante solicita licencia Clase [B1]. Declara en DDJJ antecedente de [Diabetes Mellitus Tipo 2 / Cardiopatía isquémica revascularizada / Portador de Marcapasos / Epilepsia en remisión]. Aporta certificado de médico especialista en [Endocrinología / Cardiología / Neurología], Dr./Dra. [Nombre y Apellido, M.P. Nº XXXXX] de fecha [DD/MM/AAAA], quien certifica paciente clínicamente compensado, adherente al tratamiento y sin episodios de descompensación aguda [sin hipoglucemias severas / sin síncopes ni arritmias / libre de crisis convulsivas por más de 12 meses], documento que se sella y adjunta al presente legajo. Al examen actual: clínicamente estable, AV OD [8/10] OI [8/10] [con/sin] corrección, audición y motricidad conservadas. Conforme Arts. 14 y 20 Ley 24.449 / Dto. 779/95 y Baremo ANSV (Disp. 219/2025), se otorga APTO CON VIGENCIA REDUCIDA por [12 / 24] meses para control evolutivo.</div>
+        </div>
+
+        <div class="template-card">
+          <div class="template-card-header">
+            <strong>4. Dictamen: APTO CON RESTRICCIÓN POR VISIÓN MONOCULAR (Solo Grupo 1: Clases A, B, G)</strong>
+            <button type="button" class="btn-copy" data-copy-target="tpl-apto-monocular">📋 Copiar plantilla</button>
+          </div>
+          <div class="template-body" id="tpl-apto-monocular">Postulante solicita licencia particular Clase [B1 / A1] (Grupo 1). Se constata visión monocular [ojo derecho / ojo izquierdo con AV &lt; 1/10] de más de 6 meses de evolución. Aporta certificado oftalmológico del Dr./Dra. [Nombre, M.P. Nº XXXXX] que acredita período de adaptación &ge; 6 meses, agudeza visual en ojo único de [8/10 a 10/10] [con/sin] corrección, campo visual normal (mínimo 50° nasal y 70° temporal) y visión nocturna conservada, el cual se adjunta al legajo. Conforme Apartado 15.1 del Baremo ANSV (Disp. 219/2025), se otorga APTO CON RESTRICCIONES para Grupo 1: Uso obligatorio de espejos retrovisores laterales panorámicos en ambos lados, espejo retrovisor interno panorámico y lentes de protección [o casco integral con visera transparente en motovehículos]. Vigencia: [12 / 24 / 36] meses.</div>
+        </div>
+
+        <div class="template-card">
+          <div class="template-card-header">
+            <strong>5. Dictamen: TRÁMITE RETENIDO / PENDIENTE DE INTERCONSULTA (Ap. 10.4 y 10.5 Disp. 219/2025)</strong>
+            <button type="button" class="btn-copy" data-copy-target="tpl-retenido">📋 Copiar plantilla</button>
+          </div>
+          <div class="template-body" id="tpl-retenido">SE RETIENE TRÁMITE (PENDIENTE DE APTITUD MÉDICA – Ap. 10.4 / 10.5 Disp. ANSV 219/2025). Durante la evaluación psicofísica del día de la fecha [y/o según lo declarado en DDJJ], se constata [cifras tensionales de 185/110 mmHg / antecedente declarado de patología cardiovascular-neurológica-metabólica sin informe actualizado de especialista / agudeza visual binocular inferior a 6/10 sin corrección óptica]. A fin de valorar la aptitud psicofísica conforme al Baremo ANSV vigente, se solicita interconsulta y certificado médico por especialista en [Cardiología / Neurología / Oftalmología / Endocrinología / Neumonología] que informe diagnóstico, estudios complementarios actualizados, tratamiento, adherencia y estabilidad clínica. Queda el trámite en estado PENDIENTE hasta la presentación de dicha documentación.</div>
+        </div>
+
+        <div class="template-card">
+          <div class="template-card-header">
+            <strong>6. Dictamen: NO APTO E INFORMACIÓN DE JUNTA MÉDICA PROVINCIAL (Ap. 10.6 y 11 Disp. 219/2025)</strong>
+            <button type="button" class="btn-copy" data-copy-target="tpl-no-apto">📋 Copiar plantilla</button>
+          </div>
+          <div class="template-body" id="tpl-no-apto">DICTAMEN: NO APTO para Clase [D1 / C1 / B1]. Evaluado el postulante en el día de la fecha, se constata [visión monocular solicitando licencia profesional Grupo 2 / deterioro neurocognitivo objetivado en pruebas de cribado e informe especializado / cardiopatía descompensada Clase Funcional NYHA III-IV / portador de CDI solicitando clase profesional], condición que no alcanza los parámetros mínimos exigidos por el Baremo de Aptitud Psicofísica de la Agencia Nacional de Seguridad Vial (Disposición ANSV Nº 219/2025, Anexo I) para la categoría solicitada. Conforme Apartados 10.6 y 11 de la Disposición ANSV 219/2025 y Decreto Provincial 532/09 (Anexo II), se notifica al ciudadano el resultado de la evaluación y su derecho a solicitar revisión ante la Junta Médica Provincial.</div>
+        </div>
+
+        <h3>C. Plantillas de Solicitud de Interconsulta para Especialistas Externos</h3>
+        <div class="template-card">
+          <div class="template-card-header">
+            <strong>Solicitud de Informe a Especialista Externo (Cardiología / Neurología / Endocrinología / Oftalmología)</strong>
+            <button type="button" class="btn-copy" data-copy-target="tpl-interconsulta-especialista">📋 Copiar plantilla</button>
+          </div>
+          <div class="template-body" id="tpl-interconsulta-especialista">CENTRO EMISOR DE LICENCIAS DE CONDUCIR – MUNICIPALIDAD DE AVELLANEDA
+SOLICITUD DE INFORME MÉDICO ESPECIALIZADO (Disposición ANSV Nº 219/2025)
+
+Postulante: [Nombre y Apellido] – DNI: [Nº DNI] – Clase de Licencia solicitada: [Clase A/B (Grupo 1) o Clase C/D/E (Grupo 2)]
+
+Estimado/a Colega Especialista en [Cardiología / Neurología / Endocrinología / Oftalmología / Neumonología]:
+A los efectos de evaluar la aptitud psicofísica del postulante según los Baremos Nacionales de la Agencia Nacional de Seguridad Vial (Disp. ANSV 219/2025), solicitamos tenga a bien informar con letra clara, fecha, firma y sello profesional los siguientes parámetros objetivos:
+1. Diagnóstico clínico actualizado y tiempo de evolución.
+2. Estudios complementarios recientes y resultados principales [ej.: ECG y Ecocardiograma con FEVI y Clase Funcional NYHA / EEG e imagen cerebral / HbA1c y fondo de ojo / Agudeza visual con y sin corrección y campo visual / Polisomnografía y reporte de adherencia a CPAP].
+3. Esquema farmacológico actual, adherencia terapéutica y presencia o ausencia de efectos adversos sedativos o psicomotores.
+4. Constancia expresa de ausencia de episodios agudos de descompensación en los últimos 12 meses [ausencia de síncopes, arritmias malignas, crisis convulsivas o hipoglucemias severas que hayan requerido asistencia de terceros].
+
+Nota legal: El presente informe revestirá carácter de documento adjunto al legajo oficial del Sistema Nacional de Licencias de Conducir (Si.Na.Li.C.).</div>
+        </div>
+      </article>
+
+      <!-- CAPÍTULO 7: BLINDAJE MÉDICO-LEGAL Y ÉTICA -->
+      <article class="chapter-card" id="cap-blindaje">
+        <div class="chapter-header">
+          <span class="chapter-eyebrow">Capítulo 7 · Protección Jurídica del Médico Examinador</span>
+          <h2>Blindaje Médico-Legal, Secreto Profesional y Ética Colegial en la Provincia de Buenos Aires</h2>
+          <p>Los 4 pilares legales que protegen tu matrícula provincial (M.P.) ante auditorías, reclamos administrativos o causas judiciales por siniestros viales.</p>
+        </div>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Pilar Jurídico</th>
+                <th>Norma Aplicable (Con acceso directo al archivo)</th>
+                <th>Aplicación Práctica en el Consultorio de Avellaneda</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Responsabilidad Penal por Certificaciones (Falsedad Ideológica)</strong></td>
+                <td>
+                  <a class="btn-doc-link anchor-jump" target="_blank" href="../Marco%20Legal%20Nacional/Codigo_Penal_Ley_11179_Texto_Actualizado.html#art-293">Código Penal Arts. 292, 293 y 295</a><br/>
+                  <a class="btn-doc-link anchor-jump" target="_blank" href="../Marco%20Legal%20Nacional/Ley_17132_Ejercicio_de_la_Medicina_Texto_Actualizado.html#art-19">Ley 17.132 Arts. 19 y 20</a>
+                </td>
+                <td>
+                  El formulario FUT y el registro en Si.Na.Li.C. son <strong>instrumentos públicos</strong>. Validar la aptitud de una persona que no fue examinada presencialmente en el box o falsear deliberadamente un parámetro configura el delito del <strong>Art. 293 del Código Penal</strong> (1 a 6 años de prisión). <strong>Regla:</strong> Nunca firmes ni valides en sistema un trámite sin el postulante presente frente a vos.
+                </td>
+              </tr>
+              <tr>
+                <td><strong>2. Eximición de Responsabilidad Civil ante Siniestros Posteriores</strong></td>
+                <td>
+                  <a class="btn-doc-link anchor-jump" target="_blank" href="../Marco%20Legal%20Nacional/Codigo_Civil_y_Comercial_Ley_26994_Texto_Actualizado.html#art-1725">Código Civil y Comercial Arts. 1724, 1725 y 1768</a>
+                </td>
+                <td>
+                  Si un conductor que aprobaste sufre meses después un siniestro vial por una patología oculta o súbita, tu defensa pericial descansa en demostrar que:<br/>
+                  1) El postulante firmó la <strong>DDJJ</strong> negando antecedentes;<br/>
+                  2) Los parámetros objetivos del examen en el box cumplían el <strong>Baremo ANSV 219/2025</strong>;<br/>
+                  3) Si declaró patología, adjuntaste al legajo el certificado del especialista y redujiste la vigencia.
+                </td>
+              </tr>
+              <tr>
+                <td><strong>3. Protección de Datos Sensibles de Salud y Secreto Médico</strong></td>
+                <td>
+                  <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Ley_25326_Proteccion_Datos_Personales_Datos_Sensibles_Salud.html">Ley 25.326 (Arts. 2, 7, 8 y 10)</a><br/>
+                  <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Ley_26529_Derechos_del_Paciente_e_Historia_Clinica_Texto_Actualizado.html">Ley 26.529 (Arts. 12 a 21)</a>
+                </td>
+                <td>
+                  Los diagnósticos declarados en la DDJJ (VIH, epilepsia, patologías psiquiátricas, oncológicas, medicación) son <strong>Datos Sensibles protegidos por secreto profesional (Art. 156 CP)</strong>. Frente al personal administrativo del municipio, solo se informa la condición de aptitud (<em>Apto / Con restricciones / Retenido / No Apto</em>), resguardando la confidencialidad diagnóstica.
+                </td>
+              </tr>
+              <tr>
+                <td><strong>4. Autonomía Pericial frente a Médicos Asistentes Externos</strong></td>
+                <td>
+                  <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Decreto_Ley_5413_1958_Ejercicio_Medicina_y_Colegio_Medicos_PBA.html">Decreto-Ley PBA 5.413/58</a><br/>
+                  <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Codigo_de_Etica_Colegio_de_Medicos_PBA_Res_CS_950.pdf">Código de Ética Colegio Médicos PBA</a>
+                </td>
+                <td>
+                  En jurisdicción bonaerense (Distrito II – Avellaneda), el informe del médico de cabecera del paciente es un elemento auxiliar de juicio, pero <strong>no obliga al Médico Examinador del CEL</strong> cuando el cuadro contradice los puntos de corte de la Disposición ANSV 219/2025.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- CAPÍTULO 8: BIBLIOTECA NORMATIVA COMPLETA -->
+      <article class="chapter-card" id="cap-biblioteca">
+        <div class="chapter-header">
+          <span class="chapter-eyebrow">Capítulo 8 · Repositorio Documental Completo</span>
+          <h2>Índice Interactivo de Todos los Archivos Descargados en el Proyecto</h2>
+          <p>Acceso directo con un clic desde el celular o la PC a todos los textos legales y manuales almacenados en las tres carpetas.</p>
+        </div>
+
+        <h3>1. Carpeta: <code>Normativa y Manuales de la Agencia Nacional de Seguridad Vial (ANSV)/</code></h3>
+        <div class="file-links-grid">
+          <a class="btn-doc-link" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_219_2025_Manual_y_Baremos_Psicofisicos_norma.htm">📄 Disposición ANSV 219/2025 (Manual y Baremos Vigentes)</a>
+          <a class="btn-doc-link" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_300_2025_Baremo_Capacidad_Auditiva_norma.htm">📄 Disposición ANSV 300/2025 (Baremo Auditivo Actualizado)</a>
+          <a class="btn-doc-link" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_54_2025_Reforma_SiNaLiC_norma.htm">📄 Disposición ANSV 54/2025 (Reforma Si.Na.Li.C.)</a>
+          <a class="btn-doc-link" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Manual_Examen_Medico_Psicofisico_ANSV_Art14.pdf">📕 Manual Examen Médico Psicofísico Art. 14 (PDF)</a>
+          <a class="btn-doc-link" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_207_2009_SiNaLiC.html">📄 Disposición ANSV 207/2009 (Norma Fundacional)</a>
+          <a class="btn-doc-link" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_207_2009_SiNaLiC_AnexoI.pdf">📕 Disp. 207/2009 – Anexo I (PDF)</a>
+          <a class="btn-doc-link" target="_blank" href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_207_2009_SiNaLiC_AnexoII.pdf">📕 Disp. 207/2009 – Anexo II (PDF)</a>
+        </div>
+
+        <h3>2. Carpeta: <code>Marco Legal Nacional/</code></h3>
+        <div class="file-links-grid">
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Ley_24449_Transito_Texto_Actualizado.html">⚖️ Ley Nacional de Tránsito 24.449 (Texto Actualizado)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Ley_26363_Creacion_ANSV_texact.htm">⚖️ Ley Nacional 26.363 (Creación ANSV)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Decreto_779_1995_Reglamentario_Ley_24449_texactdto779-1995-anexo1.htm">📜 Decreto 779/95 – Anexo 1 (Reglamentación General)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Decreto_196_2025_Modificacion_Reglamentacion_Transito_texact.htm">📜 Decreto 196/2025 (Modificación Reglamentación Tránsito)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Decreto_796_2026_Actualizacion_Transito_norma.htm">📜 Decreto 796/2026</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Decreto_1716_2008_Reglamentario_Ley_26363_dto1716-2008anexo1.pdf">📕 Decreto 1716/2008 – Anexo 1 (PDF)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Ley_17132_Ejercicio_de_la_Medicina_Texto_Actualizado.html">⚕️ Ley 17.132 (Ejercicio de la Medicina)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Ley_26529_Derechos_del_Paciente_e_Historia_Clinica_Texto_Actualizado.html">📂 Ley 26.529 (Derechos del Paciente e Historia Clínica)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Decreto_1089_2012_Reglamentario_Ley_26529_Historia_Clinica.html">📜 Decreto 1089/2012 (Reglamentario Ley 26.529)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Ley_25326_Proteccion_Datos_Personales_Datos_Sensibles_Salud.html">🔒 Ley 25.326 (Protección de Datos Personales / Sensibles)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Ley_26657_Salud_Mental_Texto_Actualizado.html">🧠 Ley 26.657 (Ley Nacional de Salud Mental)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Ley_22431_Proteccion_Integral_Personas_con_Discapacidad.html">♿ Ley 22.431 (Protección Integral Discapacidad)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Codigo_Penal_Ley_11179_Texto_Actualizado.html">🚨 Código Penal de la Nación (Ley 11.179)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20Nacional/Codigo_Civil_y_Comercial_Ley_26994_Texto_Actualizado.html">🛡️ Código Civil y Comercial de la Nación (Ley 26.994)</a>
+        </div>
+
+        <h3>3. Carpeta: <code>Marco Legal de la Provincia de Buenos Aires/</code></h3>
+        <div class="file-links-grid">
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Ley_Provincial_13927_Codigo_Transito_PBA.html">🏛️ Ley Provincial 13.927 (Código de Tránsito PBA)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Ley_Provincial_15402_Alcohol_Cero_al_Volante_PBA.html">🚫 Ley Provincial 15.402 (Alcohol y Psicotrópicos Cero)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Decreto_Provincial_532_2009_Reglamentario_Ley_13927.html">📑 Decreto Provincial 532/2009 (Texto Completo y Anexos)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Normativa_Vial_Provincia_Buenos_Aires_Resumen_manual_tramitacion.pdf">📘 Manual de Tramitación Licencias PBA (PDF)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Disposicion_20_2019_Anexo_Clases_y_Subclases_Licencias_PBA.pdf">📋 Anexo Disposición 20/19 – Clases y Subclases PBA (PDF)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Decreto_Ley_5413_1958_Ejercicio_Medicina_y_Colegio_Medicos_PBA.html">⚕️ Decreto-Ley PBA 5.413/58 (Colegio de Médicos PBA)</a>
+          <a class="btn-doc-link" target="_blank" href="../Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Codigo_de_Etica_Colegio_de_Medicos_PBA_Res_CS_950.pdf">📕 Código de Ética Colegio de Médicos PBA (PDF)</a>
+        </div>
+      </article>
+
+      <!-- CAPÍTULO 9: VADEMÉCUM DE BOLSILLO (1 PÁGINA IMPRIMIBLE PARA EL ESCRITORIO) -->
+      <article class="chapter-card" id="cap-vademecum">
+        <div class="vademecum-sheet">
+          <div class="chapter-header" style="margin-bottom:1rem; padding-bottom:0.75rem;">
+            <span class="chapter-eyebrow">Apéndice Destacable · Hoja de Escritorio para el Consultorio</span>
+            <h2>Vademécum Rápido de Bolsillo – Médico Examinador CEL Avellaneda</h2>
+            <p>Resumen de cortes numéricos y conductas inmediatas (Disp. ANSV 219/2025 · Disp. 300/2025 · Dto. 779/95 y 196/2025).</p>
+          </div>
+
+          <div class="vademecum-grid">
+            <div class="vademecum-box">
+              <h4>👁️ Cortes de Agudeza Visual (Snellen)</h4>
+              <ul>
+                <li><strong>Grupo 1 (Clases A, B, G – Particulares):</strong><br/>Mínimo <strong>6/10 (0,6)</strong> en mejor ojo y <strong>2/10 (0,2)</strong> en peor ojo (o &ge; 0,5 AO) con o sin corrección.</li>
+                <li><strong>Grupo 2 (Clases C, D, E – Profesionales):</strong><br/>Mínimo <strong>8/10 (0,8)</strong> en mejor ojo y <strong>5/10 (0,5)</strong> en peor ojo con o sin corrección.</li>
+                <li><strong>Visión Monocular (&lt; 1/10 en un ojo):</strong><br/>
+                  &bull; <strong>Grupo 2:</strong> <span class="badge badge-noapto">NO APTO</span><br/>
+                  &bull; <strong>Grupo 1:</strong> <span class="badge badge-warn">Apto c/Restricción</span> si &ge; 6 meses de pérdida, AV ojo único &ge; 8/10, CV normal + 2 espejos laterales panorámicos + espejo interno panorámico + lentes protectores.</li>
+              </ul>
+            </div>
+
+            <div class="vademecum-box">
+              <h4>👂 Audición (Disp. ANSV 300/2025)</h4>
+              <ul>
+                <li><strong>Alcanza umbral con audífono:</strong> <span class="badge badge-warn">Apto c/Restricción</span> (<em>Uso obligatorio de otoamplífono</em>).</li>
+                <li><strong>Hipoacusia severa / Anacusia bilateral:</strong><br/>
+                  &bull; <strong>Grupo 1 (A y B):</strong> <span class="badge badge-warn">Apto c/Restricción</span> (Espejos retrovisores laterales convexos duales + espejo panorámico interno).<br/>
+                  &bull; <strong>Grupo 2 (Pasajeros/Emergencia):</strong> <span class="badge badge-noapto">NO APTO</span>.</li>
+              </ul>
+            </div>
+
+            <div class="vademecum-box">
+              <h4>⏳ Vigencias y Criterios por Edad</h4>
+              <ul>
+                <li><strong>Hasta 65 años:</strong> Hasta 5 años (Grupo 1) según normativa vigente.</li>
+                <li><strong>Mayores de 65 años:</strong> Reducción progresiva (hasta 3 años).</li>
+                <li><strong>Mayores de 70 años:</strong> Renovación <strong>anual obligatoria</strong> con control psicofísico completo y cribado cognitivo (Test del Reloj &ge; 7/10 pts).</li>
+                <li><strong>Facultad Médica (Art. 14/20):</strong> El médico puede reducir la vigencia a <strong>6, 12 o 24 meses</strong> ante toda patología crónica compensada.</li>
+              </ul>
+            </div>
+
+            <div class="vademecum-box">
+              <h4>🚨 Alertas Rojas en el Box Médico</h4>
+              <ul>
+                <li><strong>TA &ge; 180/110 mmHg en el acto:</strong> <span class="badge badge-info">Retener</span> y pedir interconsulta cardiológica.</li>
+                <li><strong>CDI (Cardiodesfibrilador):</strong> <span class="badge badge-noapto">No Apto</span> en Grupo 2; anual en Grupo 1 (&ge; 6 meses sin descargas).</li>
+                <li><strong>Epilepsia en tratamiento:</strong> <span class="badge badge-noapto">No Apto</span> en Grupo 2; anual en Grupo 1 (&ge; 12 meses sin crisis con informe neurológico y EEG).</li>
+                <li><strong>Diabetes con Insulina:</strong> En Grupo 1 exigir informe especializado (HbA1c y 0 hipoglucemias severas en 12 meses) + vigencia reducida (1–2 años).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

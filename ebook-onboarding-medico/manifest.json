@@ -1,0 +1,9 @@
+{
+  "name": "Manual del Médico Examinador – CEL Avellaneda (PBA)",
+  "short_name": "CEL Médico PBA",
+  "description": "Ebook interactivo de inducción, baremos ANSV, plantillas periciales y biblioteca legal para Médicos Examinadores de Licencias de Conducir.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0284c7"
+}
