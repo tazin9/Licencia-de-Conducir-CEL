@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Estación de Consultorio Diario – Médico Examinador CEL Avellaneda (PBA)</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ENCABEZADO PRINCIPAL DE LA ESTACIÓN MÉDICA -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-group">
+        <div class="brand-icon" aria-hidden="true">🩺</div>
+        <div class="brand-titles">
+          <h1>
+            Consultorio Médico CEL Avellaneda
+            <span class="brand-badge">Si.Na.Li.C. · PBA</span>
+          </h1>
+          <p>Motor de Decisión Pericial en Vivo · Disp. ANSV 219/2025 y 300/2025 · Dto. 196/2025 y 532/09</p>
+        </div>
+      </div>
+
+      <!-- NAVEGACIÓN POR PESTAÑAS INTERNAS -->
+      <nav class="header-nav-tabs" aria-label="Módulos del consultorio">
+        <button type="button" class="tab-btn active" data-tab-target="tab-evaluador">
+          <span>⚡</span> Evaluador &amp; Dictamen
+        </button>
+        <button type="button" class="tab-btn" data-tab-target="tab-buscador">
+          <span>🔍</span> Baremos en 2 Seg
+        </button>
+        <button type="button" class="tab-btn" data-tab-target="tab-escalas">
+          <span>👁️</span> Optotipo &amp; Escalas
+        </button>
+        <button type="button" class="tab-btn" data-tab-target="tab-formularios">
+          <span>🖨️</span> Interconsulta &amp; Reloj
+        </button>
+      </nav>
+
+      <!-- ENLACES DE INTEGRACIÓN CON EBOOK Y PORTAL -->
+      <div class="header-actions">
+        <a href="../ebook-onboarding-medico/index.html" class="btn-switch-ebook">
+          📘 Abrir Ebook &amp; Biblioteca
+        </a>
+        <a href="../index.html" class="btn-hub-link" title="Ir al Portal Principal">
+          🏛️ Portal
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BARRA DE PRODUCTIVIDAD DEL TURNO DIARIO (100% LOCAL / LEY 25.326) -->
+  <section class="shift-strip" aria-label="Estadísticas del turno actual">
+    <div class="shift-strip-inner">
+      <div class="shift-kpis">
+        <span class="kpi-pill">Turno Hoy: <strong id="kpi-total">0</strong> atendidos</span>
+        <span class="kpi-pill kpi-apto">Aptos: <strong id="kpi-apto">0</strong></span>
+        <span class="kpi-pill kpi-warn">C/ Restricción o Vig. Reducida: <strong id="kpi-warn">0</strong></span>
+        <span class="kpi-pill kpi-info">Retenidos (Interconsulta): <strong id="kpi-retenido">0</strong></span>
+        <span class="kpi-pill kpi-noapto">No Aptos: <strong id="kpi-noapto">0</strong></span>
+      </div>
+      <div class="shift-controls">
+        <span class="security-reminder">🔒 Ley 25.326: Datos en memoria local · No olvides cerrar sesión Si.Na.Li.C. y guardar tu sello</span>
+        <button type="button" class="preset-btn" id="btn-reset-shift" title="Reiniciar contador del día">
+          Reiniciar Turno
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENEDOR CENTRAL -->
+  <main class="workspace-container">
+
+    <!-- ====================================================================
+         PESTAÑA 1: EVALUADOR PERICIAL RÁPIDO Y GENERADOR DE DICTAMEN EN VIVO
+         ==================================================================== -->
+    <section id="tab-evaluador" class="tab-panel active">
+
+      <!-- BARRA DE ESCENARIOS RÁPIDOS DE PRUEBA Y LIMPIEZA -->
+      <div class="quick-presets-bar no-print" style="margin-bottom: 1rem;">
+        <span>⚡ Carga Rápida de Escenarios:</span>
+        <button type="button" class="preset-btn" data-preset="apto_estandar">✅ Apto Estándar (B1)</button>
+        <button type="button" class="preset-btn" data-preset="lentes_b1">👓 Usa Lentes (B1)</button>
+        <button type="button" class="preset-btn" data-preset="monocular_dual">👁️ Monocular Dual (B1 + D1)</button>
+        <button type="button" class="preset-btn" data-preset="hta_box">🚨 HTA ≥ 180/110 en Box</button>
+        <button type="button" class="preset-btn" data-preset="dbt_insulina">🩸 Diabetes c/ Insulina</button>
+        <button type="button" class="preset-btn" data-preset="adulto_mayor_75">🕒 Mayor ≥ 70 años (Reloj)</button>
+        <button type="button" class="preset-btn" data-preset="cdi_profesional">❤️ Portador CDI (C1/D1)</button>
+        <button type="button" class="preset-btn btn-clear-form" id="btn-new-patient">🔄 Nuevo Postulante (Limpiar)</button>
+      </div>
+
+      <div class="consultorio-grid">
+
+        <!-- COLUMNA IZQUIERDA: FORMULARIO CLÍNICO-PERICIAL DE 4 PASOS -->
+        <div class="form-column">
+
+          <!-- PASO 1: IDENTIFICACIÓN, EDAD Y SUBCLASES (MOTOR DUAL GRUPO 1 + GRUPO 2) -->
+          <div class="panel-card">
+            <div class="panel-card-header">
+              <div class="panel-step-title">
+                <span class="step-badge">Paso 1</span>
+                Identificación, Edad y Clases Solicitadas (FUT / Si.Na.Li.C.)
+              </div>
+              <span class="panel-subtitle">Minuto 1 · Regla de los 3 Segundos</span>
+            </div>
+
+            <div class="field-grid-4">
+              <div class="form-group">
+                <label for="pt-name">Nombre y Apellido (Opcional p/ acta)</label>
+                <input type="text" id="pt-name" class="form-control" placeholder="Ej.: Juan Pérez" autocomplete="off" />
+              </div>
+              <div class="form-group">
+                <label for="pt-dni">Nº de DNI</label>
+                <input type="text" id="pt-dni" class="form-control" placeholder="Ej.: 28.456.789" autocomplete="off" />
+              </div>
+              <div class="form-group">
+                <label for="pt-age">Edad (años)</label>
+                <input type="number" id="pt-age" class="form-control" min="16" max="100" value="34" />
+              </div>
+              <div class="form-group">
+                <label for="pt-tramite">Tipo de Trámite</label>
+                <select id="pt-tramite" class="form-control">
+                  <option value="Renovación">Renovación</option>
+                  <option value="Original (Primera vez)">Original (Primera vez)</option>
+                  <option value="Ampliación de Clase">Ampliación de Clase</option>
+                  <option value="Reemplazo / Duplicado">Reemplazo / Duplicado</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- SELECTOR DE SUBCLASES GRUPO 1 Y GRUPO 2 -->
+            <div class="subclass-groups-wrapper">
+              <div class="subclass-box">
+                <div class="subclass-box-header">
+                  <span>🟢 GRUPO 1 · PARTICULARES (A, B, G y Adaptados F)</span>
+                  <small>Corte AV 0,6 / 0,2</small>
+                </div>
+                <div class="chips-container">
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="A1.1" data-group="1" /><span>A1.1</span></label>
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="A1.2" data-group="1" /><span>A1.2</span></label>
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="A1.3" data-group="1" /><span>A1.3</span></label>
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="A1.4" data-group="1" /><span>A1.4</span></label>
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="A3" data-group="1" /><span>A3 (Delivery)</span></label>
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="B1" data-group="1" checked /><span>B1 (Auto/Utilitario)</span></label>
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="B2" data-group="1" /><span>B2</span></label>
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="G1" data-group="1" /><span>G1/G2</span></label>
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="F" data-group="1" /><span>Clase F (Adaptado)</span></label>
+                </div>
+              </div>
+
+              <div class="subclass-box group-2-box">
+                <div class="subclass-box-header">
+                  <span>🟠 GRUPO 2 · PROFESIONALES (C, D, E)</span>
+                  <small>Corte AV 0,8 / 0,5 · ≥ 21 años</small>
+                </div>
+                <div class="chips-container">
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="C1" data-group="2" /><span>C1 (Camión &le;12t)</span></label>
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="C2" data-group="2" /><span>C2</span></label>
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="C3" data-group="2" /><span>C3 (&gt;24t)</span></label>
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="D1" data-group="2" /><span>D1 (Taxi/Remis/Apps)</span></label>
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="D2" data-group="2" /><span>D2 (&le;20 pl)</span></label>
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="D3" data-group="2" /><span>D3 (Colectivo)</span></label>
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="D4" data-group="2" /><span>D4 (Emergencia/Ambulancia)</span></label>
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="E1" data-group="2" /><span>E1 (Articulado)</span></label>
+                  <label class="subclass-chip"><input type="checkbox" name="subclase" value="E2" data-group="2" /><span>E2 (Maq. Especial)</span></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="checks-grid" style="margin-top: 0.7rem;">
+              <label class="check-tile">
+                <input type="checkbox" id="chk-dni-verificado" checked />
+                <span><strong>Identidad verificada:</strong> DNI físico coincide con rostro y FUT en box.</span>
+              </label>
+              <label class="check-tile">
+                <input type="checkbox" id="chk-ddjj-firmada" checked />
+                <span><strong>DDJJ firmada en mi presencia:</strong> Se realizaron preguntas verbales de control.</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- PASO 2: EVALUACIÓN SENSORIAL (VISIÓN DISP. 219/25 Y AUDICIÓN DISP. 300/25) -->
+          <div class="panel-card">
+            <div class="panel-card-header">
+              <div class="panel-step-title">
+                <span class="step-badge">Paso 2</span>
+                Evaluación Sensorial: Visión (Ap. 15.1) y Audición (Disp. 300/2025)
+              </div>
+              <span class="panel-subtitle">Minutos 2 y 3 · Optotipo y Oído</span>
+            </div>
+
+            <div class="field-grid-3">
+              <div class="form-group">
+                <label for="av-od">Agudeza Visual Ojo Derecho (OD)</label>
+                <select id="av-od" class="form-control">
+                  <option value="1.0" selected>10/10 (1.0 · 20/20)</option>
+                  <option value="0.9">9/10 (0.9 · 20/22)</option>
+                  <option value="0.8">8/10 (0.8 · 20/25) — Corte G2 Mejor Ojo / Monocular</option>
+                  <option value="0.7">7/10 (0.7 · 20/28)</option>
+                  <option value="0.6">6/10 (0.6 · 20/32) — Corte G1 Mejor Ojo</option>
+                  <option value="0.5">5/10 (0.5 · 20/40) — Corte G2 Peor Ojo</option>
+                  <option value="0.4">4/10 (0.4 · 20/50)</option>
+                  <option value="0.3">3/10 (0.3 · 20/63)</option>
+                  <option value="0.2">2/10 (0.2 · 20/100) — Corte G1 Peor Ojo</option>
+                  <option value="0.1">1/10 (0.1 · 20/200)</option>
+                  <option value="0.0">&lt; 1/10 (Amaurosis / Visión Monocular)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="av-oi">Agudeza Visual Ojo Izquierdo (OI)</label>
+                <select id="av-oi" class="form-control">
+                  <option value="1.0" selected>10/10 (1.0 · 20/20)</option>
+                  <option value="0.9">9/10 (0.9 · 20/22)</option>
+                  <option value="0.8">8/10 (0.8 · 20/25) — Corte G2 Mejor Ojo / Monocular</option>
+                  <option value="0.7">7/10 (0.7 · 20/28)</option>
+                  <option value="0.6">6/10 (0.6 · 20/32) — Corte G1 Mejor Ojo</option>
+                  <option value="0.5">5/10 (0.5 · 20/40) — Corte G2 Peor Ojo</option>
+                  <option value="0.4">4/10 (0.4 · 20/50)</option>
+                  <option value="0.3">3/10 (0.3 · 20/63)</option>
+                  <option value="0.2">2/10 (0.2 · 20/100) — Corte G1 Peor Ojo</option>
+                  <option value="0.1">1/10 (0.1 · 20/200)</option>
+                  <option value="0.0">&lt; 1/10 (Amaurosis / Visión Monocular)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="av-correccion">¿Requirió Corrección Óptica?</label>
+                <select id="av-correccion" class="form-control">
+                  <option value="sin_correccion">No (Alcanza corte SIN lentes)</option>
+                  <option value="lentes_aereos">Sí — Con Anteojos / Lentes Aéreos</option>
+                  <option value="lentes_contacto">Sí — Con Lentes de Contacto</option>
+                  <option value="olvido_lentes">No trajo sus lentes (No alcanza corte hoy)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-grid-3" style="margin-top: 0.7rem;">
+              <div class="form-group">
+                <label for="vis-campo">Campo Visual y Motilidad Ocular</label>
+                <select id="vis-campo" class="form-control">
+                  <option value="normal">Normal (Binocular ≥ 120°, sin diplopía)</option>
+                  <option value="monocular_adaptado">Monocular compensado (≥ 6 meses + CV ojo único normal c/ informe)</option>
+                  <option value="monocular_reciente">Monocular reciente (&lt; 6 meses o sin certificado oftalmológico)</option>
+                  <option value="diplopia_hemianopsia">Alterado (Hemianopsia / Diplopía / Escotoma central)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="vis-encandilamiento">Visión Cromática y Encandilamiento</label>
+                <select id="vis-encandilamiento" class="form-control">
+                  <option value="normal">Normal (Reconoce semáforo y recupera rápido)</option>
+                  <option value="catarata_no_operada">Alteración al encandilamiento / Catarata significativa</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="audicion-estado">Capacidad Auditiva (Disp. ANSV 300/2025)</label>
+                <select id="audicion-estado" class="form-control">
+                  <option value="conservada">Conservada sin audífono</option>
+                  <option value="otoamplifono">Hipoacusia compensada con Otoamplífono (Audífono)</option>
+                  <option value="hipoacusia_severa">Hipoacusia Severa / Anacusia Bilateral (Requiere espejos)</option>
+                  <option value="hipoacusia_sin_estudio">Hipoacusia detectada en box sin audífono ni audiometría</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- PASO 3: SIGNOS VITALES, SISTEMA LOCOMOTOR Y CLASE F -->
+          <div class="panel-card">
+            <div class="panel-card-header">
+              <div class="panel-step-title">
+                <span class="step-badge">Paso 3</span>
+                Tensión Arterial en Box y Sistema Locomotor (Ap. 15.6 / Clase F)
+              </div>
+              <span class="panel-subtitle">Minuto 4 · Semiotecnia Motora y TA</span>
+            </div>
+
+            <div class="field-grid-3">
+              <div class="form-group">
+                <label for="ta-pas">TA Sistólica en Box (mmHg)</label>
+                <input type="number" id="ta-pas" class="form-control" value="124" min="70" max="260" />
+              </div>
+              <div class="form-group">
+                <label for="ta-pad">TA Diastólica en Box (mmHg)</label>
+                <input type="number" id="ta-pad" class="form-control" value="78" min="40" max="160" />
+              </div>
+              <div class="form-group">
+                <label for="locomotor-estado">Motricidad, Fuerza Prensil y Coordinación</label>
+                <select id="locomotor-estado" class="form-control">
+                  <option value="conservado">Conservado (Marcha, prensión palmar, cervical y pedales normales)</option>
+                  <option value="adaptado_f">Déficit motor compensado con Adaptación Vehicular (Clase F / Automática)</option>
+                  <option value="deficit_agudo">Déficit motor agudo / Yeso / Posoperatorio reciente (No Apto Transitorio)</option>
+                  <option value="deficit_severo">Déficit motor severo no compensable para la categoría</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- SUB-CAJA DE ADAPTACIONES VEHICULARES SI SELECCIONA CLASE F O ADAPTADO -->
+            <div class="conditional-box" id="box-adaptaciones-f" style="display: none;">
+              <h4>♿ Adaptaciones Vehiculares Homologadas Requeridas (Ley 22.431 / Clase F):</h4>
+              <div class="checks-grid">
+                <label class="check-tile"><input type="checkbox" class="chk-adapt-f" value="Caja de transmisión automática" checked /><span>Caja de transmisión automática</span></label>
+                <label class="check-tile"><input type="checkbox" class="chk-adapt-f" value="Pomo giratorio en el volante" /><span>Pomo giratorio en el volante</span></label>
+                <label class="check-tile"><input type="checkbox" class="chk-adapt-f" value="Comandos manuales de freno y acelerador" /><span>Comandos manuales de freno y acelerador</span></label>
+                <label class="check-tile"><input type="checkbox" class="chk-adapt-f" value="Inversión / adaptación de pedalera" /><span>Inversión / adaptación de pedalera</span></label>
+                <label class="check-tile"><input type="checkbox" class="chk-adapt-f" value="Espejos retrovisores laterales panorámicos duales" /><span>Espejos panorámicos laterales e interno</span></label>
+                <label class="check-tile"><input type="checkbox" class="chk-adapt-f" value="Uso obligatorio de prótesis/órtesis homologada" /><span>Uso obligatorio de prótesis/órtesis</span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- PASO 4: PATOLOGÍAS CRÓNICAS, CRIBADO COGNITIVO Y AUDITORÍA DE CERTIFICADOS -->
+          <div class="panel-card">
+            <div class="panel-card-header">
+              <div class="panel-step-title">
+                <span class="step-badge">Paso 4</span>
+                Patologías Declaradas / Detectadas, Cognición y Certificados Externos
+              </div>
+              <span class="panel-subtitle">Baremos 15.3 a 15.10 Disp. ANSV 219/2025</span>
+            </div>
+
+            <div class="field-grid-2">
+              <div class="form-group">
+                <label for="cardio-estado">❤️ Cardiovascular (Ap. 15.7)</label>
+                <select id="cardio-estado" class="form-control">
+                  <option value="normal">Sin cardiopatía declarada ni signos de descompensación</option>
+                  <option value="cardio_compensada">Cardiopatía / HTA / Coronariopatía compensada (NYHA I)</option>
+                  <option value="nyha_ii">Insuficiencia Cardíaca Clase Funcional NYHA II compensada</option>
+                  <option value="marcapasos">Portador de Marcapasos Definitivo compensado (sin síncopes)</option>
+                  <option value="cdi">Portador de Cardiodesfibrilador Implantable (CDI)</option>
+                  <option value="cardio_descompensada">Cardiopatía NYHA III–IV / Síncope / Arritmia no controlada</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="dbt-estado">🩸 Metabólico / Diabetes Mellitus (Ap. 15.9)</label>
+                <select id="dbt-estado" class="form-control">
+                  <option value="normal">Sin Diabetes Mellitus</option>
+                  <option value="dbt_oral">Diabetes Tipo 2 en tratamiento ORAL compensada</option>
+                  <option value="dbt_insulina">Diabetes Tipo 1 o 2 INSULINO-TRATADA (sin hipoglucemias severas 12m)</option>
+                  <option value="dbt_descompensada">Diabetes descompensada o con hipoglucemia severa reciente</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="neuro-estado">🧠 Neurológico y Epilepsia (Ap. 15.8)</label>
+                <select id="neuro-estado" class="form-control">
+                  <option value="normal">Sin patología neurológica ni crisis convulsivas</option>
+                  <option value="epilepsia_controlada">Epilepsia controlada (≥ 12 meses libre de crisis con EEG e informe)</option>
+                  <option value="epilepsia_activa">Crisis convulsiva en los últimos 12 meses / Epilepsia sin control</option>
+                  <option value="neuro_estable">Secuela ACV / Parkinson leve compensado con informe neurológico</option>
+                  <option value="neuro_severo">Deterioro motor/cognitivo neurológico progresivo o vértigo activo</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="sueno-mental">🫁 Sueño (SAOS) / 🧩 Salud Mental y Psicotrópicos</label>
+                <select id="sueno-mental" class="form-control">
+                  <option value="normal">Sin sospecha de SAOS ni uso de psicotrópicos sedantes</option>
+                  <option value="saos_cpap">Apnea del Sueño (SAOS) en tratamiento eficaz con CPAP y adherencia</option>
+                  <option value="saos_sospecha">Sospecha alta de SAOS (STOP-BANG ≥ 3–5 / Epworth &gt; 10) sin estudio</option>
+                  <option value="psicofarmaco_estable">Trastorno anímico compensado sin efectos adversos sedativos</option>
+                  <option value="psicofarmaco_sedante">Efecto sedativo activo / Consumo problemático / Descompensación psíquica</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-grid-2" style="margin-top: 0.75rem;">
+              <div class="form-group">
+                <label for="reloj-estado">🕒 Cribado Cognitivo / Test del Reloj (Adultos Mayores ≥ 70 años)</label>
+                <select id="reloj-estado" class="form-control">
+                  <option value="normal">Orientado / Test del Reloj Normal (≥ 7/10 pts)</option>
+                  <option value="patologico">Test del Reloj Patológico (≤ 6/10 pts) o Bradipsiquia/Desorientación</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="cert-estado">📋 ¿Presenta Certificado de Especialista Externo Hoy?</label>
+                <select id="cert-estado" class="form-control">
+                  <option value="no_requiere">No requiere (Sin patologías crónicas de riesgo)</option>
+                  <option value="presenta_valido">Sí — Presenta certificado VÁLIDO (≤ 30 días, firma/sello y datos objetivos)</option>
+                  <option value="falta_certificado">NO trajo certificado o trajo uno vencido/incompleto ("solo dice apto")</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- SUB-CAJA SI PRESENTA CERTIFICADO VÁLIDO -->
+            <div class="conditional-box" id="box-certificado-datos" style="display: none;">
+              <h4>📄 Datos del Certificado de Especialista Adjuntado al Legajo (Resguardo Art. 1725 CCyC):</h4>
+              <div class="field-grid-3">
+                <div class="form-group">
+                  <label for="cert-especialidad">Especialidad</label>
+                  <input type="text" id="cert-especialidad" class="form-control" placeholder="Ej.: Cardiología / Endocrinología / Oftalmología" />
+                </div>
+                <div class="form-group">
+                  <label for="cert-medico">Dr./Dra. y Matrícula (M.P. / M.N.)</label>
+                  <input type="text" id="cert-medico" class="form-control" placeholder="Ej.: Dra. Gómez M.P. 114.230" />
+                </div>
+                <div class="form-group">
+                  <label for="cert-resumen">Parámetros Objetivos Informados</label>
+                  <input type="text" id="cert-resumen" class="form-control" placeholder="Ej.: HbA1c 6.8%, sin hipoglucemias / FEVI 60% NYHA I" />
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- COLUMNA DERECHA: VEREDICTO EN VIVO, EVOLUCIÓN SI.NA.LI.C. Y ACCIONES -->
+        <aside class="verdict-column">
+
+          <!-- BANNER SEMAFÓRICO PRINCIPAL -->
+          <div class="verdict-banner" id="verdict-banner">
+            <span class="verdict-kicker" id="verdict-kicker">DICTAMEN PERICIAL SUGERIDO (SI.NA.LI.C.)</span>
+            <div class="verdict-main-title" id="verdict-title">APTO SIN RESTRICCIONES</div>
+            <div id="verdict-subtitle" style="font-size: 0.83rem;">Cumple el 100% de los parámetros del Baremo ANSV 219/2025 y 300/2025.</div>
+
+            <div class="verdict-meta-row">
+              <span class="verdict-pill" id="pill-vigencia">⏳ Vigencia Máx: 5 años (60 meses)</span>
+              <span class="verdict-pill" id="pill-restricciones">🔒 Restricciones: Ninguna</span>
+            </div>
+
+            <!-- DESGLOSE MOTOR DE DECISIÓN DUAL (GRUPO 1 VS GRUPO 2) -->
+            <div class="dual-engine-grid" id="dual-engine-box">
+              <div class="dual-group-card">
+                <small>Grupo 1 (Particulares A, B, G)</small>
+                <strong id="dual-g1-status">APTO</strong>
+              </div>
+              <div class="dual-group-card">
+                <small>Grupo 2 (Profesionales C, D, E)</small>
+                <strong id="dual-g2-status">No solicitado</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- TARJETA DE FUNDAMENTOS Y TEXTO DE EVOLUCIÓN -->
+          <div class="panel-card">
+            <div class="panel-card-header" style="margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
+              <div class="panel-step-title">📌 Fundamento Normativo y Alertas</div>
+              <a href="../Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_219_2025_Manual_y_Baremos_Psicofisicos_norma.htm" target="_blank" class="link-norma-direct">Abrir Disp. 219/25 ↗</a>
+            </div>
+            <ul class="reasons-list" id="verdict-reasons-list"></ul>
+
+            <div style="margin-top: 0.9rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <label for="evolution-output" style="font-size: 0.78rem; font-weight: 700; color: var(--text-secondary);">
+                  📋 Evolución Médico-Pericial Lista para Copiar (FUT / Si.Na.Li.C.):
+                </label>
+                <small style="font-size: 0.7rem; color: var(--text-muted);">Editable antes de copiar</small>
+              </div>
+              <textarea id="evolution-output" class="evolution-textarea" spellcheck="false"></textarea>
+            </div>
+
+            <div class="action-buttons-grid">
+              <button type="button" class="btn-action btn-primary-copy" id="btn-copy-evolution">
+                📋 Copiar Evolución Pericial al Portapapeles
+              </button>
+              <button type="button" class="btn-action btn-register-shift" id="btn-log-patient">
+                ➕ Sumar al Contador del Turno
+              </button>
+              <button type="button" class="btn-action btn-secondary-outline" id="btn-go-interconsulta">
+                🖨️ Generar Pedido Interconsulta
+              </button>
+              <button type="button" class="btn-action btn-secondary-outline" id="btn-go-reloj-sheet" style="grid-column: 1 / -1;">
+                🕒 Abrir Hoja Imprimible del Test del Reloj (Adultos Mayores ≥ 70 años)
+              </button>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         PESTAÑA 2: BUSCADOR INSTANTÁNEO DE BAREMOS Y MEDICAMENTOS (2 SEGUNDOS)
+         ==================================================================== -->
+    <section id="tab-buscador" class="tab-panel">
+      <div class="search-hero-box">
+        <h2>🔍 Consulta Instantánea de Baremos ANSV, Patologías y Fármacos (En 2 Segundos)</h2>
+        <p>Escribí cualquier condición clínica, fármaco, código de subclase o artículo penal para ver el punto de corte exacto entre Grupo 1 y Grupo 2.</p>
+        <div class="baremo-search-bar">
+          <input
+            type="search"
+            id="baremo-fast-search"
+            class="baremo-search-input"
+            placeholder="Ej.: monocular, insulina, epilepsia, marcapasos, cdi, hipoacusia, clonazepam, catarata, apnea, art 293..."
+          />
+        </div>
+        <div class="filter-pills-row">
+          <button type="button" class="filter-pill active" data-cat="todos">Todos (20)</button>
+          <button type="button" class="filter-pill" data-cat="Visual">👁️ Visual (Ap. 15.1)</button>
+          <button type="button" class="filter-pill" data-cat="Auditivo">👂 Auditivo (Disp. 300/25)</button>
+          <button type="button" class="filter-pill" data-cat="Cardiovascular">❤️ Cardiovascular (Ap. 15.7)</button>
+          <button type="button" class="filter-pill" data-cat="Neurológico">🧠 Neurológico (Ap. 15.8)</button>
+          <button type="button" class="filter-pill" data-cat="Endócrino">🩸 Diabetes (Ap. 15.9)</button>
+          <button type="button" class="filter-pill" data-cat="Sueño y Mental">🫁 Sueño / Fármacos / Cognición</button>
+          <button type="button" class="filter-pill" data-cat="Locomotor">♿ Locomotor / Legal</button>
+        </div>
+      </div>
+
+      <div class="baremo-cards-grid" id="baremo-cards-container"></div>
+    </section>
+
+    <!-- ====================================================================
+         PESTAÑA 3: OPTOTIPO DIGITAL Y ESCALAS CLÍNICAS (STOP-BANG, EPWORTH, RELOJ)
+         ==================================================================== -->
+    <section id="tab-escalas" class="tab-panel">
+      <div class="tools-grid">
+
+        <!-- 1. OPTOTIPO DE EMERGENCIA EN PANTALLA Y SEMÁFORO CROMÁTICO -->
+        <div class="panel-card">
+          <div class="panel-card-header">
+            <div class="panel-step-title">👁️ Optotipo Digital de Referencia y Test Cromático</div>
+            <span class="panel-subtitle">Ap. 15.1 Disp. ANSV 219/2025</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-secondary);">
+            Referencia rápida de agudeza visual Snellen y reconocimiento de colores primarios del semáforo para control en el box:
+          </p>
+
+          <div class="optotype-screen">
+            <div class="optotype-row">
+              <span class="optotype-label">0.1 (1/10)</span>
+              <span class="optotype-letters" style="font-size: 2.3rem;">E</span>
+            </div>
+            <div class="optotype-row">
+              <span class="optotype-label">0.2 (2/10 · G1 Peor)</span>
+              <span class="optotype-letters" style="font-size: 1.75rem;">F P</span>
+            </div>
+            <div class="optotype-row">
+              <span class="optotype-label">0.4 (4/10)</span>
+              <span class="optotype-letters" style="font-size: 1.35rem;">T O Z</span>
+            </div>
+            <div class="optotype-row" style="background: #fffbeb;">
+              <span class="optotype-label" style="color: #92400e;">0.5 (5/10 · G2 Peor)</span>
+              <span class="optotype-letters" style="font-size: 1.12rem;">L P E D</span>
+            </div>
+            <div class="optotype-row" style="background: #dcfce7;">
+              <span class="optotype-label" style="color: #166534;">0.6 (6/10 · Corte G1)</span>
+              <span class="optotype-letters" style="font-size: 0.96rem;">P E C F D</span>
+            </div>
+            <div class="optotype-row" style="background: #dbeafe;">
+              <span class="optotype-label" style="color: #1e40af;">0.8 (8/10 · Corte G2)</span>
+              <span class="optotype-letters" style="font-size: 0.82rem;">E D F C Z P</span>
+            </div>
+            <div class="optotype-row">
+              <span class="optotype-label">1.0 (10/10)</span>
+              <span class="optotype-letters" style="font-size: 0.7rem;">F E L O P Z D</span>
+            </div>
+          </div>
+
+          <div class="semaforo-colors-test" title="Reconocimiento de colores primarios del semáforo">
+            <div class="color-circle" style="background: #ef4444;" title="Rojo (Detenerse)"></div>
+            <div class="color-circle" style="background: #f59e0b;" title="Amarillo (Precaución)"></div>
+            <div class="color-circle" style="background: #22c55e;" title="Verde (Avanzar)"></div>
+          </div>
+        </div>
+
+        <!-- 2. CALCULADORA STOP-BANG Y ESCALA DE EPWORTH (SAOS) -->
+        <div class="panel-card">
+          <div class="panel-card-header">
+            <div class="panel-step-title">🫁 Calculadora STOP-BANG + Somnolencia (SAOS)</div>
+            <span class="panel-subtitle">Cribado en Choferes Grupo 2</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.6rem;">
+            Tildá los criterios presentes y enviá el resultado directamente a la evaluación del postulante actual:
+          </p>
+
+          <div class="checks-grid" style="grid-template-columns: 1fr;">
+            <label class="check-tile"><input type="checkbox" class="sb-tool-check" /><span><strong>S (Snore):</strong> ¿Ronca fuerte (más fuerte que hablar o se escucha con puerta cerrada)?</span></label>
+            <label class="check-tile"><input type="checkbox" class="sb-tool-check" /><span><strong>T (Tired):</strong> ¿Se siente cansado, fatigado o con somnolencia durante el día?</span></label>
+            <label class="check-tile"><input type="checkbox" class="sb-tool-check" /><span><strong>O (Observed):</strong> ¿Alguien observó que deja de respirar o se ahoga mientras duerme?</span></label>
+            <label class="check-tile"><input type="checkbox" class="sb-tool-check" /><span><strong>P (Pressure):</strong> ¿Tiene o recibe tratamiento por Hipertensión Arterial?</span></label>
+            <label class="check-tile"><input type="checkbox" class="sb-tool-check" /><span><strong>B (BMI):</strong> ¿Índice de Masa Corporal (IMC) &gt; 35 kg/m²?</span></label>
+            <label class="check-tile"><input type="checkbox" class="sb-tool-check" /><span><strong>A (Age):</strong> ¿Edad mayor a 50 años?</span></label>
+            <label class="check-tile"><input type="checkbox" class="sb-tool-check" /><span><strong>N (Neck):</strong> ¿Perímetro cervical &gt; 40 cm (mujer) o &gt; 43 cm (hombre)?</span></label>
+            <label class="check-tile"><input type="checkbox" class="sb-tool-check" /><span><strong>G (Gender):</strong> ¿Sexo masculino?</span></label>
+          </div>
+
+          <div class="conditional-box" id="sb-tool-output" style="margin-top: 0.75rem;">
+            <strong>Puntaje STOP-BANG: 0/8 (Bajo Riesgo)</strong>
+          </div>
+          <button type="button" class="btn-action btn-primary-copy" id="btn-apply-stopbang" style="margin-top: 0.6rem; width: 100%;">
+            ⬆️ Aplicar este resultado de SAOS a la Evaluación Actual
+          </button>
+        </div>
+
+        <!-- 3. PUNTUACIÓN INTERACTIVA DEL TEST DEL RELOJ (ESCALA CACHO / SUNDSTRÖM) -->
+        <div class="panel-card">
+          <div class="panel-card-header">
+            <div class="panel-step-title">🕒 Calculadora del Test del Reloj a la Orden (11:10)</div>
+            <span class="panel-subtitle">Adultos Mayores ≥ 70 años</span>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.7rem;">
+            Consigna: <em>"Dibuje una esfera redonda de reloj, coloque todos los números adentro y marque las once y diez (11:10)"</em>. Corte normal: <strong>≥ 7/10 puntos</strong>.
+          </p>
+
+          <div class="form-group" style="margin-bottom: 0.65rem;">
+            <label for="clock-esfera">1. Esfera del Reloj (0 a 2 puntos)</label>
+            <select id="clock-esfera" class="form-control clock-calc-input">
+              <option value="2" selected>2 pts — Redonda u ovalada normal (o mínima distorsión)</option>
+              <option value="1">1 pt — Asimétrica marcada o cierre incompleto</option>
+              <option value="0">0 pts — Ausente o irreconocible</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0.65rem;">
+            <label for="clock-numeros">2. Presencia y Secuencia de los Números 1 al 12 (0 a 4 puntos)</label>
+            <select id="clock-numeros" class="form-control clock-calc-input">
+              <option value="4" selected>4 pts — Todos del 1 al 12 en orden y cuadrantes correctos</option>
+              <option value="3">3 pts — Todos presentes con leve error espacial o fuera del borde</option>
+              <option value="2">2 pts — Omisión/adición de números o amontonados en un hemicampo</option>
+              <option value="1">1 pt — Gran distorsión espacial o secuencia invertida</option>
+              <option value="0">0 pts — Ausencia de números</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0.65rem;">
+            <label for="clock-agujas">3. Agujas Marcando las 11:10 (0 a 4 puntos)</label>
+            <select id="clock-agujas" class="form-control clock-calc-input">
+              <option value="4" selected>4 pts — Dos agujas unidas en el centro (corta en 11, larga en 2)</option>
+              <option value="3">3 pts — Agujas en 11 y 2 pero de igual tamaño o descentradas</option>
+              <option value="2">2 pts — Error concreto: apunta al "10" en vez del "2" o una sola aguja bien</option>
+              <option value="1">1 pt — Agujas presentes pero sin relación con la hora 11:10</option>
+              <option value="0">0 pts — Sin agujas</option>
+            </select>
+          </div>
+
+          <div class="conditional-box" id="clock-tool-output">
+            <strong>Puntaje Total: 10/10 puntos — NORMAL (≥ 7 pts)</strong>
+          </div>
+
+          <button type="button" class="btn-action btn-primary-copy" id="btn-apply-clock" style="margin-top: 0.6rem; width: 100%;">
+            ⬆️ Aplicar Puntaje del Reloj a la Evaluación Actual
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         PESTAÑA 4: FORMULARIOS IMPRIMIBLES (INTERCONSULTA ESPECIALISTA Y RELOJ)
+         ==================================================================== -->
+    <section id="tab-formularios" class="tab-panel">
+      <div class="print-sheets-layout">
+
+        <!-- PANEL LATERAL DE CONFIGURACIÓN DEL DOCUMENTO A IMPRIMIR -->
+        <div class="panel-card no-print">
+          <div class="panel-card-header">
+            <div class="panel-step-title">🖨️ Configurador de Hoja Oficial</div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0.75rem;">
+            <label for="sheet-type-select">Tipo de Formulario a Imprimir / Copiar</label>
+            <select id="sheet-type-select" class="form-control">
+              <option value="interconsulta">1. Solicitud de Interconsulta a Especialista Externo</option>
+              <option value="reloj">2. Hoja Oficial para Test del Reloj (Adultos Mayores ≥ 70)</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="group-interconsulta-esp" style="margin-bottom: 0.75rem;">
+            <label for="interconsulta-esp-select">Especialidad Destino de la Interconsulta</label>
+            <select id="interconsulta-esp-select" class="form-control">
+              <option value="Cardiología">❤️ Cardiología / Electrofisiología (Ap. 15.7)</option>
+              <option value="Oftalmología">👁️ Oftalmología (Ap. 15.1)</option>
+              <option value="Neurología">🧠 Neurología (Ap. 15.8)</option>
+              <option value="Endocrinología / Diabetología">🩸 Endocrinología / Diabetología (Ap. 15.9)</option>
+              <option value="Neumonología / Medicina del Sueño">🫁 Neumonología / Medicina del Sueño (SAOS)</option>
+              <option value="Otorrinolaringología / Audiología">👂 Otorrinolaringología / Audiología (Disp. 300/25)</option>
+              <option value="Psiquiatría / Salud Mental">🧩 Psiquiatría / Salud Mental (Ap. 15.3)</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0.75rem;">
+            <label for="interconsulta-motivo-input">Motivo Clínico / Hallazgo en el Box</label>
+            <input
+              type="text"
+              id="interconsulta-motivo-input"
+              class="form-control"
+              placeholder="Ej.: Cifras de TA 185/110 mmHg en box / Antecedente de DBT c/ insulina"
+            />
+          </div>
+
+          <div class="action-buttons-grid" style="grid-template-columns: 1fr;">
+            <button type="button" class="btn-action btn-primary-copy" id="btn-print-official-sheet">
+              🖨️ Imprimir Hoja Oficial (A4 / PDF)
+            </button>
+            <button type="button" class="btn-action btn-secondary-outline" id="btn-copy-sheet-text">
+              📋 Copiar Texto de la Solicitud (para WhatsApp / Sistema)
+            </button>
+          </div>
+        </div>
+
+        <!-- VISTA PREVIA DE LA HOJA IMPRIMIBLE (SE IMPRIME LIMPIA EN @MEDIA PRINT) -->
+        <div class="printable-preview-sheet" id="printable-sheet-container"></div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BARRA DE NAVEGACIÓN INFERIOR PARA CELULAR -->
+  <nav class="mobile-nav-bar" aria-label="Navegación móvil">
+    <button type="button" class="mobile-tab-btn active" data-tab-target="tab-evaluador">
+      <span>⚡</span>
+      <span>Evaluador</span>
+    </button>
+    <button type="button" class="mobile-tab-btn" data-tab-target="tab-buscador">
+      <span>🔍</span>
+      <span>Baremos</span>
+    </button>
+    <button type="button" class="mobile-tab-btn" data-tab-target="tab-escalas">
+      <span>👁️</span>
+      <span>Escalas</span>
+    </button>
+    <button type="button" class="mobile-tab-btn" data-tab-target="tab-formularios">
+      <span>🖨️</span>
+      <span>Imprimir</span>
+    </button>
+    <a href="../ebook-onboarding-medico/index.html" class="mobile-tab-btn" style="text-decoration: none;">
+      <span>📘</span>
+      <span>Ebook</span>
+    </a>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>

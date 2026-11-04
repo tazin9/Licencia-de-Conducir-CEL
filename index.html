@@ -2,14 +2,241 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=./ebook-onboarding-medico/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Manual del Médico Examinador – CEL Avellaneda (PBA)</title>
-  <script>
-    window.location.replace("./ebook-onboarding-medico/index.html");
-  </script>
+  <meta name="theme-color" content="#0f172a" />
+  <title>Sistema Médico Examinador – CEL Avellaneda (Provincia de Buenos Aires)</title>
+  <style>
+    :root {
+      --bg-page: #0f172a;
+      --bg-card: #1e293b;
+      --border: #334155;
+      --accent: #38bdf8;
+      --accent-strong: #0284c7;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(circle at top right, #1e3a8a 0%, #0f172a 60%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+      line-height: 1.55;
+    }
+    .hub-wrapper {
+      max-width: 1020px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .hub-badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #bae6fd;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 0.65rem;
+    }
+    .subtitle {
+      color: #cbd5e1;
+      font-size: 1.02rem;
+      max-width: 760px;
+      margin-bottom: 2rem;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.35rem;
+      margin-bottom: 2rem;
+    }
+    .module-card {
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+    .module-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 28px rgba(2, 132, 199, 0.25);
+    }
+    .module-card.primary-card {
+      background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+      border: 2px solid #0284c7;
+    }
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-icon {
+      font-size: 2rem;
+      background: rgba(2, 132, 199, 0.2);
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.24rem 0.6rem;
+      border-radius: 6px;
+      background: #0284c7;
+      color: #ffffff;
+    }
+    .module-card h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .module-card p {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+    .feature-list {
+      list-style: none;
+      font-size: 0.82rem;
+      color: #94a3b8;
+      display: flex;
+      flex-direction: column;
+      gap: 0.32rem;
+    }
+    .btn-cta {
+      margin-top: auto;
+      padding: 0.7rem 1rem;
+      border-radius: 9px;
+      background: #0284c7;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-align: center;
+      transition: background 0.15s ease;
+    }
+    .module-card:hover .btn-cta {
+      background: #0369a1;
+    }
+    .quick-normas-box {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.15rem 1.35rem;
+    }
+    .quick-normas-box h3 {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 0.7rem;
+    }
+    .normas-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+    .normas-links a {
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      background: #1e293b;
+      border: 1px solid #334155;
+      padding: 0.38rem 0.75rem;
+      border-radius: 7px;
+      transition: all 0.15s ease;
+    }
+    .normas-links a:hover {
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+  </style>
 </head>
-<body style="font-family: sans-serif; padding: 2rem; text-align: center;">
-  <p>Redirigiendo al <a href="./ebook-onboarding-medico/index.html">Ebook del Médico Examinador – CEL Avellaneda</a>...</p>
+<body>
+  <div class="hub-wrapper">
+    <span class="hub-badge">Sistema Integrado · CEL Avellaneda · Provincia de Buenos Aires</span>
+    <h1>Plataforma del Médico Examinador (Si.Na.Li.C.)</h1>
+    <p class="subtitle">
+      Acceso unificado a la <strong>Estación Web de Consultorio Diario</strong> (evaluación en 5 minutos, motor de decisión dual Grupo 1/Grupo 2, generador de evolución e interconsultas) y al <strong>Ebook de Onboarding y Biblioteca Legal Oficial</strong>.
+    </p>
+
+    <div class="cards-grid">
+      <!-- TARJETA 1: APLICACIÓN DE CONSULTORIO DIARIO -->
+      <a href="./app-consultorio/index.html" class="module-card primary-card">
+        <div class="card-top">
+          <div class="card-icon">🩺</div>
+          <span class="card-tag">Uso en Box Médico</span>
+        </div>
+        <h2>Aplicación Web de Consultorio Diario</h2>
+        <p>
+          Asistente pericial interactivo para evaluar postulantes en tiempo real según las Disposiciones ANSV 219/2025 y 300/2025.
+        </p>
+        <ul class="feature-list">
+          <li>✔️ Motor de Decisión Dual (evalúa simultáneamente Grupo 1 y Grupo 2, ej.: B1 + D1)</li>
+          <li>✔️ Generador de Evolución Pericial 1-Click para pegar en Si.Na.Li.C. / FUT</li>
+          <li>✔️ Impresión A4 de Solicitud de Interconsulta a Especialistas y Hoja del Test del Reloj</li>
+          <li>✔️ Buscador de Baremos/Fármacos en 2 seg, Optotipo Digital y Contador de Turno</li>
+        </ul>
+        <div class="btn-cta">Abrir Estación de Consultorio &rarr;</div>
+      </a>
+
+      <!-- TARJETA 2: EBOOK DE ONBOARDING Y BIBLIOTECA -->
+      <a href="./ebook-onboarding-medico/index.html" class="module-card">
+        <div class="card-top">
+          <div class="card-icon">📘</div>
+          <span class="card-tag" style="background: #334155;">Estudio y Referencia</span>
+        </div>
+        <h2>Ebook de Onboarding y Biblioteca Legal</h2>
+        <p>
+          Manual completo de inducción en 7 días, protocolo semiológico, resolución de los 8 casos críticos y acceso a todas las leyes.
+        </p>
+        <ul class="feature-list">
+          <li>✔️ Plan de Estudio Guiado en 7 Días con progreso guardado en el dispositivo</li>
+          <li>✔️ Tablas maestras comparativas de Subclases (A1.1 a G3 y Clase F)</li>
+          <li>✔️ Guiones diplomáticos y Blindaje Médico-Legal (Art. 293 CP y Art. 1725 CCyC)</li>
+          <li>✔️ Vademécum de Bolsillo imprimible en 1 página A4 para el escritorio</li>
+        </ul>
+        <div class="btn-cta" style="background: #334155;">Abrir Ebook de Inducción &rarr;</div>
+      </a>
+    </div>
+
+    <div class="quick-normas-box">
+      <h3>⚖️ Acceso Directo a Normas Fundamentales en el Repositorio</h3>
+      <div class="normas-links">
+        <a href="./Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_219_2025_Manual_y_Baremos_Psicofisicos_norma.htm" target="_blank">📄 Disp. ANSV 219/2025 (Baremos Vigentes)</a>
+        <a href="./Normativa%20y%20Manuales%20de%20la%20Agencia%20Nacional%20de%20Seguridad%20Vial%20(ANSV)/Disposicion_ANSV_300_2025_Baremo_Capacidad_Auditiva_norma.htm" target="_blank">👂 Disp. ANSV 300/2025 (Baremo Auditivo)</a>
+        <a href="./Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Disposicion_20_2019_Anexo_Clases_y_Subclases_Licencias_PBA.pdf" target="_blank">📋 Clases y Subclases PBA (Disp. 20/19 PDF)</a>
+        <a href="./Marco%20Legal%20de%20la%20Provincia%20de%20Buenos%20Aires/Normativa_Vial_Provincia_Buenos_Aires_Resumen_manual_tramitacion.pdf" target="_blank">📘 Manual de Tramitación CEL PBA (PDF)</a>
+        <a href="./Marco%20Legal%20Nacional/Ley_24449_Transito_Texto_Actualizado.html#cap-licencia" target="_blank">⚖️ Ley 24.449 (Arts. 13 a 20)</a>
+        <a href="./Marco%20Legal%20Nacional/Codigo_Penal_Ley_11179_Texto_Actualizado.html#art-293" target="_blank">🚨 Código Penal Art. 293</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

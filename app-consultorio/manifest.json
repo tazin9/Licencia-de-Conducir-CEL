@@ -1,0 +1,10 @@
+{
+  "name": "Consultorio Médico Examinador – CEL Avellaneda (PBA)",
+  "short_name": "CEL Consultorio",
+  "description": "Sistema de Soporte a la Decisión Pericial y Generador de Dictámenes Si.Na.Li.C. (Disp. ANSV 219/2025 y 300/2025) para el Médico Examinador del CEL Avellaneda.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "lang": "es-AR"
+}

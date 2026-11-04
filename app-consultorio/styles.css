@@ -1,0 +1,1216 @@
+:root {
+  --bg-page: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f8fafc;
+  --bg-header: #0f172a;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border-color: #cbd5e1;
+  --border-subtle: #e2e8f0;
+  --accent-primary: #0284c7;
+  --accent-dark: #0369a1;
+  --accent-light: #e0f2fe;
+
+  /* Semáforo Médico-Pericial */
+  --apto-bg: #dcfce7;
+  --apto-text: #166534;
+  --apto-border: #86efac;
+  --apto-strong: #16a34a;
+
+  --warn-bg: #fef3c7;
+  --warn-text: #92400e;
+  --warn-border: #fde68a;
+  --warn-strong: #d97706;
+
+  --info-bg: #dbeafe;
+  --info-text: #1e40af;
+  --info-border: #93c5fd;
+  --info-strong: #2563eb;
+
+  --noapto-bg: #fee2e2;
+  --noapto-text: #991b1b;
+  --noapto-border: #fca5a5;
+  --noapto-strong: #dc2626;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.07);
+  --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.09);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 15.5px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   TOPBAR / HEADER DE ESTACIÓN MÉDICA
+   ========================================================================== */
+.app-header {
+  background: var(--bg-header);
+  color: #f8fafc;
+  border-bottom: 1px solid #1e293b;
+  position: sticky;
+  top: 0;
+  z-index: 120;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.2);
+}
+
+.header-inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0.7rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.brand-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #0284c7, #2563eb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.35);
+}
+
+.brand-titles h1 {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-badge {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: #0284c7;
+  color: #ffffff;
+  padding: 0.14rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.brand-titles p {
+  font-size: 0.76rem;
+  color: #94a3b8;
+}
+
+.header-nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #1e293b;
+  padding: 0.28rem;
+  border-radius: 8px;
+  border: 1px solid #334155;
+}
+
+.tab-btn {
+  background: transparent;
+  color: #cbd5e1;
+  border: none;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.15s ease;
+}
+
+.tab-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.tab-btn.active {
+  background: #0284c7;
+  color: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.btn-switch-ebook {
+  text-decoration: none;
+  background: #1e293b;
+  color: #38bdf8;
+  border: 1px solid #0284c7;
+  padding: 0.45rem 0.85rem;
+  border-radius: 7px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.15s ease;
+}
+
+.btn-switch-ebook:hover {
+  background: #0284c7;
+  color: #ffffff;
+}
+
+.btn-hub-link {
+  text-decoration: none;
+  background: transparent;
+  color: #cbd5e1;
+  border: 1px solid #334155;
+  padding: 0.45rem 0.7rem;
+  border-radius: 7px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.btn-hub-link:hover {
+  color: #ffffff;
+  border-color: #64748b;
+}
+
+/* ==========================================================================
+   BARRA DE CONTADOR DE TURNO Y ALERTA DE RESGUARDO
+   ========================================================================== */
+.shift-strip {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.5rem 1.25rem;
+}
+
+.shift-strip-inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.shift-kpis {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.kpi-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+}
+
+.kpi-pill strong {
+  font-size: 0.84rem;
+  color: var(--text-primary);
+}
+
+.kpi-pill.kpi-apto {
+  background: var(--apto-bg);
+  border-color: var(--apto-border);
+  color: var(--apto-text);
+}
+
+.kpi-pill.kpi-warn {
+  background: var(--warn-bg);
+  border-color: var(--warn-border);
+  color: var(--warn-text);
+}
+
+.kpi-pill.kpi-info {
+  background: var(--info-bg);
+  border-color: var(--info-border);
+  color: var(--info-text);
+}
+
+.kpi-pill.kpi-noapto {
+  background: var(--noapto-bg);
+  border-color: var(--noapto-border);
+  color: var(--noapto-text);
+}
+
+.shift-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.security-reminder {
+  font-size: 0.74rem;
+  color: #475569;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  padding: 0.24rem 0.65rem;
+  border-radius: 6px;
+}
+
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL Y VISTAS POR PESTAÑA
+   ========================================================================== */
+.workspace-container {
+  max-width: 1480px;
+  width: 100%;
+  margin: 1.15rem auto 4.5rem;
+  padding: 0 1.25rem;
+  flex: 1;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* ==========================================================================
+   LAYOUT DE CONSULTORIO (2 COLUMNAS EN PC: EVALUACIÓN + DICTAMEN EN VIVO)
+   ========================================================================== */
+.consultorio-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(380px, 0.95fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.verdict-column {
+  position: sticky;
+  top: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* TARJETAS DE MÓDULO CLÍNICO */
+.panel-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.panel-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.9rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.panel-step-title {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.step-badge {
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.18rem 0.5rem;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.panel-subtitle {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+/* PRESETS DE CASOS RÁPIDOS */
+.quick-presets-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  background: #f8fafc;
+  border: 1px solid var(--border-subtle);
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--radius-md);
+}
+
+.quick-presets-bar span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-right: 0.2rem;
+}
+
+.preset-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.preset-btn:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-dark);
+  background: var(--accent-light);
+}
+
+.preset-btn.btn-clear-form {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #991b1b;
+  margin-left: auto;
+}
+
+.preset-btn.btn-clear-form:hover {
+  background: #fecaca;
+}
+
+/* CONTROLES DE FORMULARIO */
+.field-grid-4 {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 0.8fr 1fr;
+  gap: 0.75rem;
+}
+
+.field-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.field-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+}
+
+.form-group label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.form-control {
+  padding: 0.48rem 0.65rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 0.86rem;
+  color: var(--text-primary);
+  background: #ffffff;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.form-control:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+/* SELECTOR DE SUBCLASES (CHIPS INTERACTIVOS) */
+.subclass-groups-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin-top: 0.75rem;
+}
+
+.subclass-box {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.7rem 0.8rem;
+}
+
+.subclass-box.group-2-box {
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.subclass-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.subclass-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.subclass-chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.subclass-chip span {
+  display: inline-block;
+  padding: 0.28rem 0.58rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.12s ease;
+}
+
+.subclass-chip input:checked + span {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0369a1;
+  box-shadow: 0 1px 3px rgba(2, 132, 199, 0.3);
+}
+
+.group-2-box .subclass-chip input:checked + span {
+  background: #d97706;
+  border-color: #b45309;
+  color: #ffffff;
+}
+
+/* CHECKBOX CARDS Y TOGGLES CLÍNICOS */
+.checks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.check-tile {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 7px;
+  background: var(--bg-subtle);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.check-tile:hover {
+  border-color: #94a3b8;
+  background: #ffffff;
+}
+
+.check-tile input[type="checkbox"] {
+  margin-top: 0.18rem;
+  accent-color: var(--accent-primary);
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.check-tile.warn-tile {
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.check-tile.danger-tile {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+/* SUB-PANELES CONDICIONALES (ESPECIALISTA / CERTIFICADO) */
+.conditional-box {
+  margin-top: 0.8rem;
+  padding: 0.85rem;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-left: 4px solid var(--accent-primary);
+  border-radius: 7px;
+}
+
+.conditional-box h4 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.55rem;
+}
+
+/* ==========================================================================
+   COLUMNA DERECHA: DICTAMEN EN TIEMPO REAL Y GENERADOR SI.NA.LI.C.
+   ========================================================================== */
+.verdict-banner {
+  border-radius: var(--radius-md);
+  padding: 1rem 1.15rem;
+  border: 2px solid var(--apto-border);
+  background: var(--apto-bg);
+  color: var(--apto-text);
+  transition: all 0.2s ease;
+}
+
+.verdict-banner.status-warn {
+  background: var(--warn-bg);
+  border-color: var(--warn-border);
+  color: var(--warn-text);
+}
+
+.verdict-banner.status-info {
+  background: var(--info-bg);
+  border-color: var(--info-border);
+  color: var(--info-text);
+}
+
+.verdict-banner.status-noapto {
+  background: var(--noapto-bg);
+  border-color: var(--noapto-border);
+  color: var(--noapto-text);
+}
+
+.verdict-kicker {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  opacity: 0.85;
+}
+
+.verdict-main-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0.15rem 0 0.45rem;
+  line-height: 1.25;
+}
+
+.verdict-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+}
+
+.verdict-pill {
+  background: rgba(255, 255, 255, 0.75);
+  padding: 0.22rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* DESGLOSE MOTOR DUAL GRUPO 1 VS GRUPO 2 */
+.dual-engine-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.dual-group-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 7px;
+  padding: 0.55rem 0.7rem;
+  color: var(--text-primary);
+}
+
+.dual-group-card small {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.dual-group-card strong {
+  font-size: 0.84rem;
+  display: block;
+  margin-top: 0.1rem;
+}
+
+/* LISTA DE FUNDAMENTOS Y ALERTAS NORMATIVAS */
+.reasons-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+}
+
+.reasons-list li {
+  padding: 0.4rem 0.6rem;
+  background: var(--bg-subtle);
+  border-left: 3px solid var(--accent-primary);
+  border-radius: 4px;
+  color: var(--text-secondary);
+}
+
+.reasons-list li.reason-warn {
+  border-left-color: var(--warn-strong);
+  background: #fffbeb;
+}
+
+.reasons-list li.reason-danger {
+  border-left-color: var(--noapto-strong);
+  background: #fef2f2;
+  color: #7f1d1d;
+  font-weight: 600;
+}
+
+/* CAJA DE EVOLUCIÓN PERICIAL LISTA PARA COPIAR */
+.evolution-textarea {
+  width: 100%;
+  min-height: 165px;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+  font-family: 'Consolas', 'SFMono-Regular', Menlo, monospace;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #0f172a;
+  background: #f8fafc;
+  resize: vertical;
+  margin-top: 0.45rem;
+}
+
+.action-buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+.btn-action {
+  padding: 0.58rem 0.75rem;
+  border-radius: 7px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: all 0.15s ease;
+}
+
+.btn-primary-copy {
+  grid-column: 1 / -1;
+  background: #0284c7;
+  color: #ffffff;
+  font-size: 0.86rem;
+  padding: 0.68rem 1rem;
+}
+
+.btn-primary-copy:hover {
+  background: #0369a1;
+}
+
+.btn-primary-copy.copied {
+  background: #16a34a;
+}
+
+.btn-register-shift {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+.btn-register-shift:hover {
+  background: #1e293b;
+}
+
+.btn-secondary-outline {
+  background: #ffffff;
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+}
+
+.btn-secondary-outline:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-dark);
+  background: var(--accent-light);
+}
+
+/* ==========================================================================
+   PESTAÑA 2: BUSCADOR INSTANTÁNEO DE BAREMOS Y MEDICAMENTOS (2 SEGUNDOS)
+   ========================================================================== */
+.search-hero-box {
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  color: #ffffff;
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.15rem;
+}
+
+.search-hero-box h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.3rem;
+}
+
+.search-hero-box p {
+  font-size: 0.85rem;
+  color: #bae6fd;
+  margin-bottom: 0.9rem;
+}
+
+.baremo-search-bar {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.baremo-search-input {
+  flex: 1;
+  min-width: 260px;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 2px solid #38bdf8;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.filter-pills-row {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.filter-pill {
+  background: rgba(255, 255, 255, 0.12);
+  color: #e0f2fe;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 0.26rem 0.68rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filter-pill:hover,
+.filter-pill.active {
+  background: #38bdf8;
+  color: #0f172a;
+  border-color: #38bdf8;
+}
+
+.baremo-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1rem;
+}
+
+.baremo-item-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.baremo-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.baremo-item-header h3 {
+  font-size: 0.96rem;
+  color: var(--text-primary);
+}
+
+.baremo-cat-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.16rem 0.5rem;
+  border-radius: 4px;
+  background: #e0f2fe;
+  color: #0369a1;
+  white-space: nowrap;
+}
+
+.baremo-compare-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+}
+
+.b-col {
+  padding: 0.5rem;
+  border-radius: 6px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+}
+
+.b-col strong {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.baremo-req-note {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  background: #f8fafc;
+  padding: 0.45rem 0.6rem;
+  border-left: 3px solid #0284c7;
+  border-radius: 4px;
+}
+
+.baremo-card-footer {
+  margin-top: auto;
+  padding-top: 0.45rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.link-norma-direct {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-dark);
+  text-decoration: none;
+}
+
+.link-norma-direct:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   PESTAÑA 3: OPTOTIPO DIGITAL, ESCALAS (STOP-BANG, EPWORTH, RELOJ)
+   ========================================================================== */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 1.2rem;
+}
+
+.optotype-screen {
+  background: #ffffff;
+  border: 2px solid #0f172a;
+  border-radius: 10px;
+  padding: 1.25rem;
+  text-align: center;
+  margin-top: 0.7rem;
+}
+
+.optotype-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px dashed #e2e8f0;
+  padding: 0.35rem 0.5rem;
+}
+
+.optotype-row:last-child {
+  border-bottom: none;
+}
+
+.optotype-letters {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 800;
+  letter-spacing: 0.35em;
+  color: #000000;
+  text-align: center;
+  flex: 1;
+}
+
+.optotype-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  min-width: 95px;
+  text-align: left;
+}
+
+.semaforo-colors-test {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 0.75rem;
+  padding: 0.65rem;
+  background: #0f172a;
+  border-radius: 8px;
+}
+
+.color-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   PESTAÑA 4: IMPRESIÓN DE INTERCONSULTA Y HOJA DEL TEST DEL RELOJ
+   ========================================================================== */
+.print-sheets-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.printable-preview-sheet {
+  background: #ffffff;
+  border: 1px solid #94a3b8;
+  border-radius: 8px;
+  padding: 2rem 2.25rem;
+  box-shadow: var(--shadow-md);
+  color: #000000;
+}
+
+.sheet-official-header {
+  border-bottom: 2px solid #0f172a;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.sheet-official-header h2 {
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.sheet-official-header p {
+  font-size: 0.8rem;
+  color: #334155;
+}
+
+.clock-draw-circle-area {
+  height: 250px;
+  border: 2px dashed #64748b;
+  border-radius: 10px;
+  margin: 1rem 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.6rem;
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+.signature-boxes-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2.4rem;
+  padding-top: 1rem;
+}
+
+.sig-line {
+  border-top: 1px solid #0f172a;
+  text-align: center;
+  padding-top: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   BARRA MÓVIL INFERIOR
+   ========================================================================== */
+.mobile-nav-bar {
+  display: none;
+}
+
+/* ==========================================================================
+   RESPONSIVE (TABLET Y CELULAR)
+   ========================================================================== */
+@media (max-width: 1080px) {
+  .consultorio-grid,
+  .print-sheets-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .verdict-column {
+    position: static;
+  }
+
+  .field-grid-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .subclass-groups-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .header-nav-tabs {
+    display: none;
+  }
+
+  .field-grid-4,
+  .field-grid-3,
+  .field-grid-2,
+  .dual-engine-grid,
+  .baremo-compare-box,
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-nav-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #0f172a;
+    border-top: 1px solid #334155;
+    z-index: 150;
+    justify-content: space-around;
+    padding: 0.4rem 0.25rem;
+  }
+
+  .mobile-tab-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 0.7rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .mobile-tab-btn.active {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+  }
+}
+
+/* ==========================================================================
+   REGLAS DE IMPRESIÓN OFICIAL A4 / A5 (@media print)
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 14mm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .app-header,
+  .shift-strip,
+  .mobile-nav-bar,
+  .no-print {
+    display: none !important;
+  }
+
+  .workspace-container {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Cuando se imprime desde la pestaña de formularios o mediante acción rápida */
+  body.printing-sheet .tab-panel {
+    display: none !important;
+  }
+
+  body.printing-sheet #tab-formularios {
+    display: block !important;
+  }
+
+  body.printing-sheet .print-sheets-layout {
+    display: block !important;
+  }
+
+  body.printing-sheet .printable-preview-sheet {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}
